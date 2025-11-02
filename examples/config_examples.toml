@@ -1,0 +1,96 @@
+# Git Quick Configuration Examples
+
+# ==============================================================================
+# Example 1: Minimal Configuration (Using Ollama locally)
+# ==============================================================================
+[quick]
+ai_provider = "ollama"
+
+[ai]
+ollama_host = "http://localhost:11434"
+
+# ==============================================================================
+# Example 2: Full Configuration with OpenAI
+# ==============================================================================
+[quick]
+auto_push = true
+emoji_style = "gitmoji"
+ai_provider = "openai"
+ai_model = "gpt-4o-mini"
+conventional_commits = true
+
+[story]
+default_range = "last-release"
+color_scheme = "dark"
+group_by = "date"
+max_commits = 50
+
+[time]
+auto_track = true
+idle_threshold = 300
+data_dir = "~/.gitquick/time"
+
+[sync]
+auto_stash = true
+prune = true
+fetch_all = true
+
+[ai]
+openai_api_key = "sk-..."
+ollama_host = "http://localhost:11434"
+
+# ==============================================================================
+# Example 3: Team Configuration (No emojis, manual push)
+# ==============================================================================
+[quick]
+auto_push = false
+emoji_style = "none"
+ai_provider = "anthropic"
+conventional_commits = true
+
+[story]
+group_by = "type"
+max_commits = 100
+
+[ai]
+anthropic_api_key = "sk-ant-..."
+
+# ==============================================================================
+# Example 4: Solo Developer Configuration (Aggressive automation)
+# ==============================================================================
+[quick]
+auto_push = true
+emoji_style = "gitmoji"
+ai_provider = "ollama"
+ai_model = "llama3.2"
+conventional_commits = true
+
+[story]
+default_range = "last-release"
+group_by = "date"
+
+[time]
+auto_track = true
+idle_threshold = 180  # 3 minutes
+
+[sync]
+auto_stash = true
+prune = true
+fetch_all = true
+
+# ==============================================================================
+# Example 5: Documentation Project Configuration
+# ==============================================================================
+[quick]
+auto_push = true
+emoji_style = "none"
+ai_provider = "ollama"
+conventional_commits = true
+
+[story]
+group_by = "date"
+default_range = "last-release"
+
+# Prefer "docs" type for most commits
+[ai]
+default_type = "docs"

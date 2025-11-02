@@ -1,0 +1,161 @@
+{
+  "name": "git-quick-vscode",
+  "displayName": "Git Quick",
+  "description": "Lightning-fast Git workflows with AI-powered commit messages",
+  "version": "0.1.0",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "SCM Providers",
+    "Other"
+  ],
+  "keywords": [
+    "git",
+    "commit",
+    "ai",
+    "productivity",
+    "automation"
+  ],
+  "activationEvents": [
+    "onCommand:git-quick.quick",
+    "onCommand:git-quick.story",
+    "onCommand:git-quick.timeReport",
+    "onCommand:git-quick.syncAll",
+    "onCommand:git-quick.generateCommitMessage"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "git-quick.quick",
+        "title": "Git Quick: Quick Commit & Push",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "git-quick.story",
+        "title": "Git Quick: Show Commit Story",
+        "icon": "$(book)"
+      },
+      {
+        "command": "git-quick.timeReport",
+        "title": "Git Quick: Show Time Report",
+        "icon": "$(watch)"
+      },
+      {
+        "command": "git-quick.syncAll",
+        "title": "Git Quick: Sync All Branches",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "git-quick.generateCommitMessage",
+        "title": "Git Quick: Generate AI Commit Message",
+        "icon": "$(sparkle)"
+      }
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "command": "git-quick.quick",
+          "group": "navigation",
+          "when": "scmProvider == git"
+        },
+        {
+          "command": "git-quick.generateCommitMessage",
+          "group": "navigation",
+          "when": "scmProvider == git"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "git-quick.quick",
+          "when": "gitOpenRepositoryCount != 0"
+        },
+        {
+          "command": "git-quick.story",
+          "when": "gitOpenRepositoryCount != 0"
+        },
+        {
+          "command": "git-quick.timeReport",
+          "when": "gitOpenRepositoryCount != 0"
+        },
+        {
+          "command": "git-quick.syncAll",
+          "when": "gitOpenRepositoryCount != 0"
+        },
+        {
+          "command": "git-quick.generateCommitMessage",
+          "when": "gitOpenRepositoryCount != 0"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Git Quick",
+      "properties": {
+        "gitQuick.autoPush": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically push after committing"
+        },
+        "gitQuick.emojiStyle": {
+          "type": "string",
+          "enum": ["gitmoji", "none"],
+          "default": "gitmoji",
+          "description": "Commit message emoji style"
+        },
+        "gitQuick.aiProvider": {
+          "type": "string",
+          "enum": ["ollama", "openai", "anthropic"],
+          "default": "ollama",
+          "description": "AI provider for commit message generation"
+        },
+        "gitQuick.aiModel": {
+          "type": "string",
+          "default": "llama3.2",
+          "description": "AI model to use"
+        },
+        "gitQuick.cliPath": {
+          "type": "string",
+          "default": "git-quick",
+          "description": "Path to git-quick CLI executable"
+        },
+        "gitQuick.conventionalCommits": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use conventional commit format"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "git-quick.quick",
+        "key": "ctrl+shift+g q",
+        "mac": "cmd+shift+g q",
+        "when": "gitOpenRepositoryCount != 0"
+      },
+      {
+        "command": "git-quick.generateCommitMessage",
+        "key": "ctrl+shift+g m",
+        "mac": "cmd+shift+g m",
+        "when": "gitOpenRepositoryCount != 0"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.40.0",
+    "typescript": "^5.0.0"
+  }
+}
