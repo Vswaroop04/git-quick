@@ -31,20 +31,24 @@ pip install git-quick
   - Emoji/scope support (gitmoji-style)
   - Interactive mode for fine-tuning
 
-- **`git-story`** - Compact, colorized commit summary
+- **`git-quick story`** - Compact, colorized commit summary
   - Shows commits since last release/tag
   - Grouped by author, date, or type
   - Export to markdown for changelogs
 
-- **`git-time`** - Track development time per branch/feature
+- **`git-quick time start`** - Track development time per branch/feature
   - Automatic time tracking per branch
   - Reports with breakdowns
   - Integration with time-tracking tools
 
-- **`git-sync-all`** - Update all local branches safely
+- **`git-quick sync`** - Update all local branches safely
   - Stash uncommitted changes
   - Fast-forward all branches
   - Conflict detection and reporting
+
+- **`git-quick --setup`** - Run setup wizard
+  - Configure AI providers
+  - Configure other settings
 
 ### VS Code Extension (In Progress)
 
@@ -153,15 +157,6 @@ color_scheme = "dark"
 auto_track = true
 idle_threshold = 300  # seconds
 ```
-
-## Roadmap
-
-- [ ] Core CLI commands
-- [ ] AI commit message generation
-- [ ] VS Code extension
-- [ ] Git hooks integration
-- [ ] Team collaboration features
-- [ ] Plugin system
 
 ## License
 
