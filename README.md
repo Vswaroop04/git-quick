@@ -26,22 +26,26 @@ pip install git-quick
 ### Core Commands
 
 - **`git-quick`** - Combines `git add`, `commit`, and `push` with smart defaults
+
   - Auto-detects branch
   - AI-generated commit messages from diffs
   - Emoji/scope support (gitmoji-style)
   - Interactive mode for fine-tuning
 
 - **`git-quick story`** - Compact, colorized commit summary
+
   - Shows commits since last release/tag
   - Grouped by author, date, or type
   - Export to markdown for changelogs
 
 - **`git-quick time start`** - Track development time per branch/feature
+
   - Automatic time tracking per branch
   - Reports with breakdowns
   - Integration with time-tracking tools
 
 - **`git-quick sync`** - Update all local branches safely
+
   - Stash uncommitted changes
   - Fast-forward all branches
   - Conflict detection and reporting
@@ -86,8 +90,9 @@ ollama pull llama3
 ```
 
 ### From Source
+
 ```bash
-git clone https://github.com/yourusername/git-quick.git
+git clone https://github.com/vswaroop04/git-quick.git
 cd git-quick
 pip install -e .
 ```
@@ -125,13 +130,16 @@ git-sync-all           # Sync all branches
 On your first run, git-quick will ask you to choose an AI provider:
 
 1. **Ollama** (Recommended) - Free, local, private AI
+
    - Automatically installs and downloads model
    - No API keys needed
 
 2. **OpenAI** - Best quality, requires API key
+
    - Enter your API key when prompted
 
 3. **Anthropic (Claude)** - Great for technical commits
+
    - Enter your API key when prompted
 
 4. **No AI** - Smart fallback mode

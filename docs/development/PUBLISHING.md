@@ -7,6 +7,7 @@ How to publish Git Quick to PyPI, npm, and Homebrew.
 ### 1. Update Version Numbers
 
 Update version in these files:
+
 - `pyproject.toml` → `version = "0.1.0"`
 - `package.json` → `"version": "0.1.0"`
 - `git_quick/__init__.py` → `__version__ = "0.1.0"`
@@ -18,6 +19,7 @@ Update version in these files:
 ## [0.1.0] - 2025-01-XX
 
 ### Added
+
 - Initial release
 - git-quick command
 - git-story command
@@ -119,12 +121,13 @@ npm login
 ### 2. Update Package Info
 
 Edit `package.json`:
+
 ```json
 {
   "name": "git-quick-cli",
   "version": "0.1.0",
   "repository": {
-    "url": "https://github.com/yourusername/git-quick.git"
+    "url": "https://github.com/vswaroop04/git-quick.git"
   }
 }
 ```
@@ -199,10 +202,10 @@ git tag v0.1.0
 git push origin v0.1.0
 
 # GitHub will create:
-# https://github.com/yourusername/git-quick/archive/refs/tags/v0.1.0.tar.gz
+# https://github.com/vswaroop04/git-quick/archive/refs/tags/v0.1.0.tar.gz
 
 # Download and get SHA256
-curl -L https://github.com/yourusername/git-quick/archive/refs/tags/v0.1.0.tar.gz -o git-quick-0.1.0.tar.gz
+curl -L https://github.com/vswaroop04/git-quick/archive/refs/tags/v0.1.0.tar.gz -o git-quick-0.1.0.tar.gz
 shasum -a 256 git-quick-0.1.0.tar.gz
 
 # Update Formula/git-quick.rb with SHA256
@@ -211,11 +214,12 @@ shasum -a 256 git-quick-0.1.0.tar.gz
 ### 4. Update Formula
 
 Edit `Formula/git-quick.rb`:
+
 ```ruby
 class GitQuick < Formula
   desc "Lightning-fast Git workflows with AI-powered commit messages"
-  homepage "https://github.com/yourusername/git-quick"
-  url "https://github.com/yourusername/git-quick/archive/refs/tags/v0.1.0.tar.gz"
+  homepage "https://github.com/vswaroop04/git-quick"
+  url "https://github.com/vswaroop04/git-quick/archive/refs/tags/v0.1.0.tar.gz"
   sha256 "YOUR_ACTUAL_SHA256_HERE"
   license "MIT"
 end
@@ -256,12 +260,14 @@ brew install git-quick
 ### Option B: Submit to homebrew-core (Harder, More Exposure)
 
 Requirements:
+
 - 75+ GitHub stars
 - 30+ forks
 - Notable user base
 - Stable for 3+ months
 
 Process:
+
 1. Create PR to https://github.com/Homebrew/homebrew-core
 2. Follow guidelines: https://docs.brew.sh/Formula-Cookbook
 3. Wait for maintainer review
@@ -283,11 +289,12 @@ vsce create-publisher your-publisher-name
 ### 2. Update Extension Manifest
 
 Edit `vscode-extension/package.json`:
+
 ```json
 {
   "publisher": "your-publisher-name",
   "repository": {
-    "url": "https://github.com/yourusername/git-quick"
+    "url": "https://github.com/vswaroop04/git-quick"
   }
 }
 ```
@@ -349,7 +356,7 @@ git tag v0.1.0
 git push origin v0.1.0
 
 # Create release on GitHub
-# https://github.com/yourusername/git-quick/releases/new
+# https://github.com/vswaroop04/git-quick/releases/new
 
 # Include:
 - Release notes
@@ -371,6 +378,7 @@ Update README.md with installation badges:
 ### 3. Social Media Announcement
 
 Post on:
+
 - Twitter/X
 - Reddit (r/programming, r/git)
 - Hacker News
@@ -378,6 +386,7 @@ Post on:
 - LinkedIn
 
 Example post:
+
 ```
 🚀 Launching Git Quick v0.1.0!
 
@@ -394,7 +403,7 @@ Install:
 📦 npm install -g git-quick-cli
 🍺 brew install git-quick
 
-https://github.com/yourusername/git-quick
+https://github.com/vswaroop04/git-quick
 ```
 
 ### 4. Submit to Lists
@@ -430,6 +439,7 @@ git push origin v0.1.1
 ### For Minor Release (0.1.0 → 0.2.0)
 
 Same as patch, but:
+
 ```bash
 npm version minor
 ```
@@ -437,6 +447,7 @@ npm version minor
 ### For Major Release (0.1.0 → 1.0.0)
 
 Same as patch, but:
+
 ```bash
 npm version major
 ```
@@ -469,6 +480,7 @@ release:
 ```
 
 Usage:
+
 ```bash
 make publish-test   # Test on TestPyPI
 make publish-pypi   # Publish to PyPI

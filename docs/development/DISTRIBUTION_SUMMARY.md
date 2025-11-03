@@ -7,21 +7,25 @@ Git Quick can be installed in **4 different ways** to support all platforms and 
 ### 1. Homebrew (macOS/Linux) 🍺
 
 **Command:**
+
 ```bash
 brew tap yourusername/git-quick
 brew install git-quick
 ```
 
 **How it works:**
+
 - Homebrew formula: `Formula/git-quick.rb`
 - Installs Python package in isolated virtualenv
 - Adds commands to PATH automatically
 - Includes shorter aliases: `gq`, `gs`, `gt`, `gsa`
 
 **Files involved:**
+
 - `Formula/git-quick.rb` - Homebrew formula definition
 
 **Publishing:**
+
 ```bash
 # Create tap repo: homebrew-git-quick
 # Push formula
@@ -35,17 +39,20 @@ brew install git-quick
 ### 2. npm (Cross-platform) 📦
 
 **Command:**
+
 ```bash
 npm install -g git-quick-cli
 ```
 
 **How it works:**
+
 - npm package wraps Python CLI
 - Node.js scripts in `bin/` call Python
 - Auto-installs Python package on first run
 - Works on Windows, Mac, Linux
 
 **Files involved:**
+
 - `package.json` - npm package config
 - `bin/git-quick.js` - Node wrapper script
 - `bin/git-story.js` - Node wrapper script
@@ -54,6 +61,7 @@ npm install -g git-quick-cli
 - `scripts/postinstall.js` - Post-install setup
 
 **Publishing:**
+
 ```bash
 npm publish
 ```
@@ -65,22 +73,26 @@ npm publish
 ### 3. pip (Python) 🐍
 
 **Command:**
+
 ```bash
 pip install git-quick
 ```
 
 **How it works:**
+
 - Pure Python package
 - Installs to Python's bin directory
 - Uses setuptools entry points
 - Smallest install footprint
 
 **Files involved:**
+
 - `pyproject.toml` - Python package config
 - `git_quick/` - Python source code
 - `setup.py` (optional) - Alternative setup
 
 **Publishing:**
+
 ```bash
 python -m build
 python -m twine upload dist/*
@@ -93,19 +105,22 @@ python -m twine upload dist/*
 ### 4. From Source (Development) 💻
 
 **Command:**
+
 ```bash
-git clone https://github.com/yourusername/git-quick.git
+git clone https://github.com/vswaroop04/git-quick.git
 cd git-quick
 pip install -e .
 ```
 
 **How it works:**
+
 - Editable install (`-e` flag)
 - Changes immediately reflected
 - Includes dev dependencies
 - Git repo stays linked
 
 **Files involved:**
+
 - All source files
 - `pyproject.toml[dev]` - Dev dependencies
 
@@ -127,6 +142,7 @@ git_quick/
 ```
 
 **Entry points defined in `pyproject.toml`:**
+
 ```toml
 [project.scripts]
 git-quick = "git_quick.cli:quick"
@@ -138,21 +154,25 @@ git-sync-all = "git_quick.cli:sync_all"
 ### Wrapper Layers
 
 **Homebrew:**
+
 ```
 brew install → virtualenv → Python package → Commands
 ```
 
 **npm:**
+
 ```
 npm install → Node.js wrapper → Python package → Commands
 ```
 
 **pip:**
+
 ```
 pip install → Python package → Commands
 ```
 
 **Source:**
+
 ```
 pip install -e . → Python package (editable) → Commands
 ```
@@ -189,12 +209,12 @@ git-quick/
 
 ## Comparison
 
-| Method | Platform | Size | Speed | Updates | Isolation |
-|--------|----------|------|-------|---------|-----------|
-| **Homebrew** | macOS/Linux | Large | Medium | `brew upgrade` | High (virtualenv) |
-| **npm** | All | Medium | Fast | `npm update -g` | Low (global) |
-| **pip** | All | Small | Fast | `pip install -U` | Low (global) |
-| **Source** | All | Small | Fast | `git pull` | Dev mode |
+| Method       | Platform    | Size   | Speed  | Updates          | Isolation         |
+| ------------ | ----------- | ------ | ------ | ---------------- | ----------------- |
+| **Homebrew** | macOS/Linux | Large  | Medium | `brew upgrade`   | High (virtualenv) |
+| **npm**      | All         | Medium | Fast   | `npm update -g`  | Low (global)      |
+| **pip**      | All         | Small  | Fast   | `pip install -U` | Low (global)      |
+| **Source**   | All         | Small  | Fast   | `git pull`       | Dev mode          |
 
 ---
 
@@ -312,6 +332,7 @@ git-quick 0.1.0
 ### Runtime Dependencies (All Users)
 
 From `pyproject.toml`:
+
 ```toml
 dependencies = [
     "click>=8.0",
@@ -327,14 +348,17 @@ dependencies = [
 ### Platform Dependencies
 
 **Homebrew:**
+
 - Python 3.11 (auto-installed)
 - Git (assumed present)
 
 **npm:**
+
 - Node.js 14+ (user must have)
 - Python 3.8+ (user must have)
 
 **pip:**
+
 - Python 3.8+ (user must have)
 - Git (assumed present)
 
@@ -345,16 +369,19 @@ dependencies = [
 ### For Users
 
 **Homebrew:**
+
 ```bash
 brew upgrade git-quick
 ```
 
 **npm:**
+
 ```bash
 npm update -g git-quick-cli
 ```
 
 **pip:**
+
 ```bash
 pip install --upgrade git-quick
 ```
@@ -375,16 +402,19 @@ pip install --upgrade git-quick
 ### "command not found"
 
 **Homebrew:**
+
 ```bash
 brew link git-quick
 ```
 
 **npm:**
+
 ```bash
 npm install -g git-quick-cli --force
 ```
 
 **pip:**
+
 ```bash
 # Add to PATH
 export PATH="$HOME/.local/bin:$PATH"
@@ -427,6 +457,7 @@ pip install --force-reinstall git-quick
 **Subheading:** Choose your preferred package manager
 
 **Tabs:**
+
 - 🍺 Homebrew (for Mac)
 - 📦 npm (for All)
 - 🐍 pip (for Python)
@@ -451,6 +482,7 @@ pip install --force-reinstall git-quick
 ### Platforms
 
 Target distribution:
+
 - Homebrew: 40% (Mac developers)
 - pip: 35% (Python developers)
 - npm: 20% (JS developers)
@@ -461,6 +493,7 @@ Target distribution:
 ## Summary
 
 **Three distribution channels:**
+
 1. ✅ PyPI (pip) - Ready to publish
 2. ✅ npm - Ready to publish
 3. ✅ Homebrew - Ready to publish
@@ -468,13 +501,15 @@ Target distribution:
 **All sharing the same Python core**, just different installation wrappers.
 
 **Users get:**
+
 - Their preferred package manager
 - Same commands and features
 - Platform-optimized experience
 - Easy updates
 
 **You maintain:**
+
 - One codebase (Python)
-- Three config files (pyproject.toml, package.json, Formula/*.rb)
+- Three config files (pyproject.toml, package.json, Formula/\*.rb)
 - Three publishing workflows
 - Unified documentation

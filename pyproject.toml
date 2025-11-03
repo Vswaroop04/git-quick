@@ -52,9 +52,9 @@ git-time = "git_quick.cli:time_track"
 git-sync-all = "git_quick.cli:sync_all"
 
 [project.urls]
-Homepage = "https://github.com/yourusername/git-quick"
-Documentation = "https://github.com/yourusername/git-quick#readme"
-Repository = "https://github.com/yourusername/git-quick"
+Homepage = "https://github.com/vswaroop04/git-quick"
+Documentation = "https://github.com/vswaroop04/git-quick#readme"
+Repository = "https://github.com/vswaroop04/git-quick"
 
 [tool.setuptools.packages.find]
 where = ["."]

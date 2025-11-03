@@ -5,18 +5,21 @@ Thank you for your interest in contributing to Git Quick!
 ## Development Setup
 
 1. Clone the repository:
+
    ```bash
-   git clone https://github.com/yourusername/git-quick.git
+   git clone https://github.com/vswaroop04/git-quick.git
    cd git-quick
    ```
 
 2. Create a virtual environment:
+
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
 3. Install in development mode:
+
    ```bash
    pip install -e ".[dev]"
    ```
@@ -47,11 +50,13 @@ git-quick/
 ## Code Style
 
 We use:
+
 - **Black** for code formatting
 - **Ruff** for linting
 - **MyPy** for type checking
 
 Run formatters:
+
 ```bash
 black git_quick tests
 ruff check git_quick tests
@@ -72,6 +77,7 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/):
 ```
 
 Types:
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation
@@ -82,6 +88,7 @@ Types:
 - `chore`: Maintenance
 
 Examples:
+
 ```
 feat(ai): add support for Claude AI
 fix(cli): handle empty git repositories
@@ -95,6 +102,7 @@ docs: update installation instructions
 - Aim for >80% code coverage
 
 Run tests:
+
 ```bash
 pytest --cov=git_quick tests/
 ```
@@ -122,16 +130,19 @@ pytest --cov=git_quick tests/
 ## VS Code Extension Development
 
 1. Navigate to extension directory:
+
    ```bash
    cd vscode-extension
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
 3. Open in VS Code:
+
    ```bash
    code .
    ```
@@ -156,6 +167,7 @@ To add a new command:
 5. Update documentation
 
 Example:
+
 ```python
 # git_quick/commands/your_command.py
 def your_command(git: GitUtils):
@@ -175,6 +187,7 @@ def your_command():
 To add a new AI provider:
 
 1. Add provider method in `git_quick/ai_commit.py`:
+
    ```python
    def _generate_yourprovider(self, diff: str, files: list[str]) -> str:
        # Implementation

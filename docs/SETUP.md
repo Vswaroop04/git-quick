@@ -13,7 +13,7 @@ pip install git-quick
 ### From Source
 
 ```bash
-git clone https://github.com/yourusername/git-quick.git
+git clone https://github.com/vswaroop04/git-quick.git
 cd git-quick
 pip install -e .
 ```
@@ -60,16 +60,19 @@ git-quick --init-config
 #### Ollama (Local, Free)
 
 1. Install Ollama:
+
    ```bash
    curl -fsSL https://ollama.ai/install.sh | sh
    ```
 
 2. Pull a model:
+
    ```bash
    ollama pull llama3.2
    ```
 
 3. Configure Git Quick:
+
    ```toml
    [quick]
    ai_provider = "ollama"
@@ -84,6 +87,7 @@ git-quick --init-config
 1. Get API key from https://platform.openai.com/api-keys
 
 2. Configure:
+
    ```toml
    [quick]
    ai_provider = "openai"
@@ -98,6 +102,7 @@ git-quick --init-config
 1. Get API key from https://console.anthropic.com/
 
 2. Configure:
+
    ```toml
    [quick]
    ai_provider = "anthropic"
@@ -112,6 +117,7 @@ git-quick --init-config
 ### Installation
 
 1. Install from VS Code marketplace:
+
    - Search for "Git Quick"
    - Click Install
 
@@ -147,6 +153,7 @@ git-time start
 ```
 
 Make executable:
+
 ```bash
 chmod +x .git/hooks/post-checkout
 ```
@@ -168,6 +175,7 @@ fi
 ```
 
 Make executable:
+
 ```bash
 chmod +x .git/hooks/commit-msg
 ```
@@ -223,6 +231,7 @@ chmod +x ~/.local/bin/git-quick
 ### Git extension not found (VS Code)
 
 Make sure Git extension is enabled:
+
 1. Open Extensions (Cmd/Ctrl + Shift + X)
 2. Search for "Git"
 3. Enable if disabled

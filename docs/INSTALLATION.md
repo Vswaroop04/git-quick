@@ -18,12 +18,14 @@ git-quick --version
 ```
 
 **Advantages:**
+
 - ✅ Automatic dependency management
 - ✅ Easy updates (`brew upgrade git-quick`)
 - ✅ Clean uninstall (`brew uninstall git-quick`)
 - ✅ Includes shorter aliases (gq, gs, gt)
 
 **Post-install (optional):**
+
 ```bash
 # Install Ollama for AI features
 brew install ollama
@@ -41,6 +43,7 @@ git-quick --version
 ```
 
 **Advantages:**
+
 - ✅ Works on all platforms (Windows, Mac, Linux)
 - ✅ Familiar for JavaScript developers
 - ✅ Automatic Python package installation
@@ -55,7 +58,7 @@ git-quick --version
 pip install git-quick
 
 # Or install from source
-git clone https://github.com/yourusername/git-quick.git
+git clone https://github.com/vswaroop04/git-quick.git
 cd git-quick
 pip install -e .
 
@@ -64,6 +67,7 @@ git-quick --version
 ```
 
 **Advantages:**
+
 - ✅ Direct Python installation
 - ✅ Smallest install size
 - ✅ Best for Python developers
@@ -73,7 +77,7 @@ git-quick --version
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/git-quick.git
+git clone https://github.com/vswaroop04/git-quick.git
 cd git-quick
 
 # Install in development mode
@@ -84,18 +88,19 @@ git-quick --version
 ```
 
 **Advantages:**
+
 - ✅ Latest development version
 - ✅ Easy to modify and contribute
 - ✅ Includes development tools
 
 ## Comparison
 
-| Method | Platform | Updates | Dependencies | Best For |
-|--------|----------|---------|--------------|----------|
-| **Homebrew** | macOS/Linux | `brew upgrade` | Auto | Mac users |
-| **npm** | All | `npm update -g` | Auto | JS devs |
-| **pip** | All | `pip install -U` | Manual | Python devs |
-| **Source** | All | `git pull` | Manual | Contributors |
+| Method       | Platform    | Updates          | Dependencies | Best For     |
+| ------------ | ----------- | ---------------- | ------------ | ------------ |
+| **Homebrew** | macOS/Linux | `brew upgrade`   | Auto         | Mac users    |
+| **npm**      | All         | `npm update -g`  | Auto         | JS devs      |
+| **pip**      | All         | `pip install -U` | Manual       | Python devs  |
+| **Source**   | All         | `git pull`       | Manual       | Contributors |
 
 ## Post-Installation
 
@@ -115,6 +120,7 @@ git-sync-all --help
 ### 2. Set Up AI Provider (Optional)
 
 **Option A: Ollama (Free, Local)**
+
 ```bash
 # macOS/Linux
 curl -fsSL https://ollama.ai/install.sh | sh
@@ -130,6 +136,7 @@ git-quick
 ```
 
 **Option B: OpenAI/Anthropic**
+
 ```bash
 # Create config
 cat > ~/.gitquick.toml << 'EOF'
@@ -144,6 +151,7 @@ EOF
 ### 3. Create Shell Aliases (Optional)
 
 **Bash/Zsh:**
+
 ```bash
 # Add to ~/.bashrc or ~/.zshrc
 cat >> ~/.bashrc << 'EOF'
@@ -158,6 +166,7 @@ source ~/.bashrc
 ```
 
 **Fish:**
+
 ```fish
 # Add to ~/.config/fish/config.fish
 abbr gq git-quick
@@ -167,6 +176,7 @@ abbr gsa git-sync-all
 ```
 
 **PowerShell (Windows):**
+
 ```powershell
 # Add to $PROFILE
 Set-Alias -Name gq -Value git-quick
@@ -193,6 +203,7 @@ git-sync-all --dry-run
 ### macOS
 
 **Recommended: Homebrew**
+
 ```bash
 brew tap yourusername/git-quick
 brew install git-quick
@@ -201,6 +212,7 @@ ollama pull llama3.2
 ```
 
 **Alternative: pip**
+
 ```bash
 # Install Python if needed
 brew install python@3.11
@@ -212,6 +224,7 @@ pip3 install git-quick
 ### Linux (Ubuntu/Debian)
 
 **Using pip:**
+
 ```bash
 # Install Python
 sudo apt update
@@ -230,6 +243,7 @@ ollama pull llama3.2
 ```
 
 **Using npm:**
+
 ```bash
 # Install Node.js
 sudo apt install nodejs npm
@@ -241,6 +255,7 @@ npm install -g git-quick-cli
 ### Windows
 
 **Using pip:**
+
 ```powershell
 # Install Python from https://python.org
 # Make sure to check "Add Python to PATH"
@@ -253,6 +268,7 @@ pip install git-quick
 ```
 
 **Using npm:**
+
 ```powershell
 # Install Node.js from https://nodejs.org
 
@@ -263,21 +279,25 @@ npm install -g git-quick-cli
 ## Updating
 
 ### Homebrew
+
 ```bash
 brew upgrade git-quick
 ```
 
 ### npm
+
 ```bash
 npm update -g git-quick-cli
 ```
 
 ### pip
+
 ```bash
 pip install --upgrade git-quick
 ```
 
 ### From Source
+
 ```bash
 cd git-quick
 git pull
@@ -287,16 +307,19 @@ pip install -e .
 ## Uninstalling
 
 ### Homebrew
+
 ```bash
 brew uninstall git-quick
 ```
 
 ### npm
+
 ```bash
 npm uninstall -g git-quick-cli
 ```
 
 ### pip
+
 ```bash
 pip uninstall git-quick
 ```
@@ -306,6 +329,7 @@ pip uninstall git-quick
 ### "command not found: git-quick"
 
 **Check PATH:**
+
 ```bash
 # For pip installations
 echo $PATH | grep ".local/bin"
@@ -316,6 +340,7 @@ source ~/.bashrc
 ```
 
 **Reinstall:**
+
 ```bash
 # With pip
 pip install --force-reinstall git-quick
@@ -327,11 +352,13 @@ npm install -g --force git-quick-cli
 ### "Python 3.8+ required"
 
 **macOS:**
+
 ```bash
 brew install python@3.11
 ```
 
 **Linux:**
+
 ```bash
 sudo apt install python3.11
 ```
@@ -342,6 +369,7 @@ Download from https://python.org
 ### Permission errors
 
 **macOS/Linux:**
+
 ```bash
 # Use --user flag
 pip install --user git-quick
@@ -369,7 +397,7 @@ For contributors:
 
 ```bash
 # Clone and install
-git clone https://github.com/yourusername/git-quick.git
+git clone https://github.com/vswaroop04/git-quick.git
 cd git-quick
 
 # Create virtual environment
@@ -389,6 +417,7 @@ make test
 ## Publishing Checklist (For Maintainers)
 
 ### PyPI
+
 ```bash
 # Build
 python -m build
@@ -401,6 +430,7 @@ python -m twine upload dist/*
 ```
 
 ### npm
+
 ```bash
 # Update version in package.json
 npm version patch  # or minor, major
@@ -410,6 +440,7 @@ npm publish
 ```
 
 ### Homebrew
+
 ```bash
 # Create tag
 git tag v0.1.0
@@ -433,5 +464,5 @@ After installation:
 ## Getting Help
 
 - Documentation: [README.md](../README.md)
-- Issues: https://github.com/yourusername/git-quick/issues
-- Discussions: https://github.com/yourusername/git-quick/discussions
+- Issues: https://github.com/vswaroop04/git-quick/issues
+- Discussions: https://github.com/vswaroop04/git-quick/discussions

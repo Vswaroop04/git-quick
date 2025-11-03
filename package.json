@@ -24,12 +24,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/git-quick.git"
+    "url": "https://github.com/vswaroop04/git-quick.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/git-quick/issues"
+    "url": "https://github.com/vswaroop04/git-quick/issues"
   },
-  "homepage": "https://github.com/yourusername/git-quick#readme",
+  "homepage": "https://github.com/vswaroop04/git-quick#readme",
   "engines": {
     "node": ">=14.0.0"
   },
