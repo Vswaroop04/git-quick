@@ -5,7 +5,7 @@
 ### Scenario 1: User Chooses Ollama (Recommended)
 
 ```bash
-$ git-quick
+$ gq
 
 ╔═══════════════════════════════════════════════════════════╗
 ║           Welcome to Git Quick! 🚀                        ║
@@ -54,22 +54,24 @@ success
 ✓ llama3 model installed successfully!
 
 ============================================================
-✨ Setup complete! You're ready to use git-quick
+✨ Setup complete! You're ready to use gq
 ============================================================
 
 Quick commands:
-  git-quick              # Quick commit & push
-  git-quick story        # Show commit history
-  git-quick time start   # Track time
-  git-quick --help       # See all options
+  gq                     # Quick commit & push
+  gq story               # Show commit history
+  gq time start          # Track time
+  gq --help              # See all options
 
-# Now git-quick proceeds with the commit...
+Note: git-quick still works as an alias
+
+# Now gq proceeds with the commit...
 ```
 
 ### Scenario 2: User Chooses OpenAI
 
 ```bash
-$ git-quick
+$ gq
 
 ╔═══════════════════════════════════════════════════════════╗
 ║           Welcome to Git Quick! 🚀                        ║
@@ -85,20 +87,20 @@ Enter your OpenAI API key: •••••••••••••••••�
 ✓ OpenAI configured successfully!
 
 ============================================================
-✨ Setup complete! You're ready to use git-quick
+✨ Setup complete! You're ready to use gq
 ============================================================
 ```
 
 ### Scenario 3: User Skips Setup
 
 ```bash
-$ git-quick
+$ gq
 
-First time running git-quick!
+First time running gq!
 Run setup wizard? [Y/n]: n
 
 Skipping setup. Using fallback mode.
-Run 'git-quick --setup' anytime to configure AI.
+Run 'gq --setup' anytime to configure AI.
 
 # Proceeds with smart fallback commit messages
 ```
@@ -106,7 +108,7 @@ Run 'git-quick --setup' anytime to configure AI.
 ### Scenario 4: User Already Has Ollama Installed
 
 ```bash
-$ git-quick
+$ gq
 
 ╔═══════════════════════════════════════════════════════════╗
 ║           Welcome to Git Quick! 🚀                        ║
@@ -122,7 +124,7 @@ Use llama3:latest? [Y/n]: y
 ✓ Configuration saved!
 
 ============================================================
-✨ Setup complete! You're ready to use git-quick
+✨ Setup complete! You're ready to use gq
 ============================================================
 ```
 
@@ -131,10 +133,11 @@ Use llama3:latest? [Y/n]: y
 ### Option 1: Run Setup Wizard Again
 
 ```bash
-git-quick --setup
+gq --setup
 ```
 
 This will show the same wizard and let you:
+
 - Switch AI providers (Ollama → OpenAI, etc.)
 - Update API keys
 - Download different models
@@ -162,16 +165,16 @@ ai_model = "gpt-4o-mini"  # Change model
 openai_api_key = "sk-proj-new-key"  # Update API key
 ```
 
-Save and git-quick will use the new settings immediately.
+Save and gq will use the new settings immediately.
 
 ### Option 3: Environment Variables (Temporary Override)
 
 ```bash
 # Use different provider for one command
-GITQUICK_AI_PROVIDER=openai git-quick
+GITQUICK_AI_PROVIDER=openai gq
 
 # Use different model
-GITQUICK_AI_MODEL=gpt-4o git-quick
+GITQUICK_AI_MODEL=gpt-4o gq
 ```
 
 ## What Gets Saved
@@ -198,11 +201,13 @@ completed = true  # Prevents wizard from running again
 ## Skipping the Wizard in CI/CD
 
 For automated environments, the wizard won't run if:
+
 - stdin is not a TTY (non-interactive)
 - You use `--no-ai` flag
 - Config file already exists with `setup.completed = true`
 
 Example for CI:
+
 ```bash
-git-quick --no-ai -y  # Uses fallback, auto-confirms
+gq --no-ai -y  # Uses fallback, auto-confirms
 ```

@@ -9,6 +9,7 @@ pip install git-quick
 ```
 
 Or from source:
+
 ```bash
 git clone <your-repo-url>
 cd git-quick
@@ -46,7 +47,7 @@ EOF
 
 **Option C: Skip AI (use simple generation)**
 
-Just use `git-quick --no-ai` flag
+Just use `gq --no-ai` flag
 
 ### 2. Try it out!
 
@@ -57,11 +58,12 @@ cd /path/to/your/project
 # Make some changes
 echo "test" >> README.md
 
-# Use git-quick!
-git-quick
+# Use gq!
+gq
 ```
 
 That's it! You'll see:
+
 1. Staged changes
 2. AI-generated commit message
 3. Confirmation prompt
@@ -71,23 +73,23 @@ That's it! You'll see:
 
 ```bash
 # Quick commit & push (default command)
-git-quick
+gq
 
 # Quick commit with custom message
-git-quick -m "feat: add new feature"
+gq -m "feat: add new feature"
 
 # Show commit history
-git-quick story
+gq story
 
 # Track development time
-git-quick time start
-git-quick time report
+gq time start
+gq time report
 
 # Sync all branches
-git-quick sync
+gq sync
 ```
 
-**One unified command:** All features now accessible via `git-quick` subcommands!
+**One unified command:** All features now accessible via `gq` subcommands!
 
 ## VS Code Extension
 
@@ -99,21 +101,25 @@ git-quick sync
 ## What Makes This Different?
 
 ### vs lazygit
+
 - Lighter weight, CLI-only
 - AI-powered commit messages
 - Simpler for everyday workflows
 
 ### vs git-extras
+
 - Modern, actively maintained
 - AI integration
 - Better UX with rich terminal output
 
 ### vs gh
+
 - Focuses on local Git workflows, not GitHub
 - Faster for common operations
 - Time tracking built-in
 
 ### vs gitmoji-cli
+
 - More than just emojis
 - Full workflow automation
 - AI message generation
@@ -124,14 +130,14 @@ git-quick sync
 
 ```bash
 # Morning: sync everything
-git-sync-all
+gq sync
 
 # During work: quick commits
-git-quick
+gq
 
 # Check progress
-git-story
-git-time report
+gq story
+gq time report
 ```
 
 ### Feature Development
@@ -139,13 +145,13 @@ git-time report
 ```bash
 # Start feature
 git checkout -b feature/awesome
-git-time start
+gq time start
 
 # Work, work, work...
-git-quick  # Multiple times
+gq  # Multiple times
 
 # Check what you did
-git-story --group-by type
+gq story --group-by type
 ```
 
 ### Bug Fixes
@@ -154,17 +160,17 @@ git-story --group-by type
 # Quick fix
 git checkout -b fix/bug-123
 echo "fix" >> file.py
-git-quick  # AI generates: "fix: resolve bug-123"
+gq  # AI generates: "fix: resolve bug-123"
 ```
 
 ### Release Prep
 
 ```bash
 # Generate changelog
-git-story --format markdown > CHANGELOG.md
+gq story --format markdown > CHANGELOG.md
 
 # See time investment
-git-time report --all
+gq time report --all
 ```
 
 ## Configuration
@@ -187,25 +193,25 @@ auto_track = true         # Auto-track branch time
 
 ## Tips
 
-### 1. Use Aliases
+### 1. Use Aliases (Optional)
 
 ```bash
+# gq is already short, but you can add more if you like
 # Add to ~/.bashrc or ~/.zshrc
-alias gq='git-quick'
-alias gs='git-story'
-alias gt='git-time'
+alias gqs='gq story'
+alias gqt='gq time'
 ```
 
 ### 2. Dry Run First
 
 ```bash
-git-quick --dry-run  # See what would happen
+gq --dry-run  # See what would happen
 ```
 
 ### 3. No Push Mode
 
 ```bash
-git-quick --no-push  # Commit but don't push
+gq --no-push  # Commit but don't push
 ```
 
 ### 4. Per-Project Config
@@ -230,7 +236,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 ```bash
 # Use fallback generation
-git-quick --no-ai
+gq --no-ai
 
 # Or check Ollama is running
 curl http://localhost:11434/api/version
@@ -239,7 +245,7 @@ curl http://localhost:11434/api/version
 ### Permission denied
 
 ```bash
-chmod +x ~/.local/bin/git-quick
+chmod +x ~/.local/bin/gq
 ```
 
 ## Next Steps
@@ -258,8 +264,8 @@ chmod +x ~/.local/bin/git-quick
 cat > ~/bin/daily-commit.sh << 'EOF'
 #!/bin/bash
 cd ~/my-project
-git-quick
-git-story --max 1
+gq
+gq story --max 1
 EOF
 chmod +x ~/bin/daily-commit.sh
 ```
@@ -270,7 +276,7 @@ chmod +x ~/bin/daily-commit.sh
 # Auto-track time on branch switch
 cat > .git/hooks/post-checkout << 'EOF'
 #!/bin/bash
-git-time start
+gq time start
 EOF
 chmod +x .git/hooks/post-checkout
 ```
@@ -286,7 +292,7 @@ conventional_commits = true
 auto_push = false  # Team prefers manual push
 EOF
 git add .gitquick.toml
-git commit -m "chore: add git-quick config"
+git commit -m "chore: add gq config"
 ```
 
 ## Getting Help

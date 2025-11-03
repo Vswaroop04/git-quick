@@ -40,26 +40,26 @@ def setup_callback(ctx, param, value):
 
 
 @click.group(cls=DefaultGroup, default_command='commit')
-@click.version_option(version="1.0.0", prog_name="git-quick")
-@click.option('--setup', is_flag=True, is_eager=True, expose_value=False, 
+@click.version_option(version="1.0.0", prog_name="gq")
+@click.option('--setup', is_flag=True, is_eager=True, expose_value=False,
               callback=setup_callback, help='Run the setup wizard')
 def cli():
     """Lightning-fast Git workflows with AI-powered commit messages.
 
     \b
     Commands:
-      git-quick         Quick commit and push (default)
-      git-quick story   Show commit history
-      git-quick time    Time tracking commands
-      git-quick sync    Sync all branches
+      gq              Quick commit and push (default)
+      gq story        Show commit history
+      gq time         Time tracking commands
+      gq sync         Sync all branches
 
     \b
     Examples:
-      git-quick                    # Quick commit & push
-      git-quick story              # Show commits
-      git-quick time start         # Track time
-      git-quick sync               # Sync branches
-      git-quick --setup            # Run setup wizard
+      gq                    # Quick commit & push
+      gq story              # Show commits
+      gq time start         # Track time
+      gq sync               # Sync branches
+      gq --setup            # Run setup wizard
     """
     pass
 
@@ -74,7 +74,7 @@ def cli():
 def commit_cmd(message, no_push, no_ai, emoji, dry_run, yes):
     """Quick commit and push with AI-generated message.
 
-    This is the default command when you run 'git-quick' without subcommands.
+    This is the default command when you run 'gq' without subcommands.
     Combines git add, commit, and push with smart defaults.
     """
     try:
@@ -181,9 +181,9 @@ def story(since, group_by, format, max):
 
     \b
     Examples:
-      git-quick story
-      git-quick story --group-by type
-      git-quick story --format markdown > CHANGELOG.md
+      gq story
+      gq story --group-by type
+      gq story --format markdown > CHANGELOG.md
     """
     try:
         git = GitUtils()
@@ -203,10 +203,10 @@ def time():
 
     \b
     Examples:
-      git-quick time start         # Start tracking
-      git-quick time stop          # Stop tracking
-      git-quick time report        # Show report
-      git-quick time report --all  # All branches
+      gq time start         # Start tracking
+      gq time stop          # Stop tracking
+      gq time report        # Show report
+      gq time report --all  # All branches
     """
     pass
 
@@ -282,8 +282,8 @@ def sync(dry_run, prune):
 
     \b
     Examples:
-      git-quick sync              # Sync all branches
-      git-quick sync --dry-run    # Preview changes
+      gq sync              # Sync all branches
+      gq sync --dry-run    # Preview changes
     """
     try:
         git = GitUtils()

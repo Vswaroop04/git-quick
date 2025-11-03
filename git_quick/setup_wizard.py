@@ -337,8 +337,8 @@ def run_setup_wizard() -> bool:
 
         console.print("[bold]Quick commands:[/bold]")
         console.print("  git-quick              # Quick commit & push")
-        console.print("  git-quick story        # Show commit history")
-        console.print("  git-quick time start   # Track time")
+        console.print("  gq story        # Show commit history")
+        console.print("  gq time start   # Track time")
         console.print("  git-quick --help       # See all options\n")
         
         # Show Ollama status if that's what was configured

@@ -34,7 +34,7 @@ Complete documentation for git-quick - Lightning-fast Git workflows with AI-powe
 
 ### For Users
 
-1. [Install git-quick](INSTALLATION.md)
+1. [Install gq (git-quick)](INSTALLATION.md)
 2. [Quick Start Guide](../QUICKSTART.md)
 3. [Configure AI](setup/AI_SETUP.md)
 4. [Learn Commands](USAGE.md)
@@ -47,7 +47,7 @@ Complete documentation for git-quick - Lightning-fast Git workflows with AI-powe
 
 ## 📖 Documentation by Use Case
 
-### "I just installed git-quick"
+### "I just installed gq"
 
 → Start with [Quick Start](../QUICKSTART.md)
 
@@ -133,8 +133,8 @@ docs/
 
 - **Issues**: [GitHub Issues](https://github.com/vswaroop04/git-quick/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/vswaroop04/git-quick/discussions)
-- **Quick Help**: Run `git-quick --help`
-- **Setup Wizard**: Run `git-quick --setup`
+- **Quick Help**: Run `gq --help`
+- **Setup Wizard**: Run `gq --setup`
 
 ## 🔗 External Resources
 

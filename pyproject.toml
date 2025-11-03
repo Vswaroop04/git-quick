@@ -45,8 +45,9 @@ dev = [
 ]
 
 [project.scripts]
+gq = "git_quick.cli:cli"
+# Backward compatibility aliases
 git-quick = "git_quick.cli:cli"
-# Backward compatibility aliases (deprecated)
 git-story = "git_quick.cli:story_cmd"
 git-time = "git_quick.cli:time_track"
 git-sync-all = "git_quick.cli:sync_all"

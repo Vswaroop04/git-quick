@@ -41,9 +41,9 @@ jobs:
       - name: Test subcommands
         run: |
           git-quick --help
-          git-quick story --help
-          git-quick time --help
-          git-quick sync --help
+          gq story --help
+          gq time --help
+          gq sync --help
 
       - name: Run basic tests
         run: |

@@ -8,9 +8,9 @@ Git Quick now uses a **single unified command** with subcommands, making it clea
 
 ```bash
 git-quick               # Quick commit & push (default)
-git-quick story         # Show commit history
-git-quick time start    # Time tracking
-git-quick sync          # Sync branches
+gq story         # Show commit history
+gq time start    # Time tracking
+gq sync          # Sync branches
 ```
 
 ## All Commands
@@ -28,28 +28,28 @@ git-quick --dry-run           # Preview
 ### Story (Commit History)
 
 ```bash
-git-quick story                       # Show commits
-git-quick story --group-by type       # Group by type
-git-quick story --format markdown     # Export markdown
-git-quick story --max 20              # Limit commits
+gq story                       # Show commits
+gq story --group-by type       # Group by type
+gq story --format markdown     # Export markdown
+gq story --max 20              # Limit commits
 ```
 
 ### Time (Time Tracking)
 
 ```bash
-git-quick time start                  # Start tracking
-git-quick time stop                   # Stop tracking
-git-quick time report                 # Show report
-git-quick time report --all           # All branches
-git-quick time report --branch feat   # Specific branch
+gq time start                  # Start tracking
+gq time stop                   # Stop tracking
+gq time report                 # Show report
+gq time report --all           # All branches
+gq time report --branch feat   # Specific branch
 ```
 
 ### Sync (Update Branches)
 
 ```bash
-git-quick sync                 # Sync all branches
-git-quick sync --dry-run       # Preview changes
-git-quick sync --no-prune      # Don't prune deleted branches
+gq sync                 # Sync all branches
+gq sync --dry-run       # Preview changes
+gq sync --no-prune      # Don't prune deleted branches
 ```
 
 ## What Changed?
@@ -67,9 +67,9 @@ git-sync-all           # Sync
 
 ```bash
 git-quick              # Commit & push (same!)
-git-quick story        # History
-git-quick time start   # Time tracking
-git-quick sync         # Sync
+gq story        # History
+gq time start   # Time tracking
+gq sync         # Sync
 ```
 
 ## Backward Compatibility
@@ -77,9 +77,9 @@ git-quick sync         # Sync
 **Good news:** Old commands still work for backward compatibility!
 
 ```bash
-git-story              # Still works, redirects to git-quick story
-git-time start         # Still works, redirects to git-quick time start
-git-sync-all           # Still works, redirects to git-quick sync
+git-story              # Still works, redirects to gq story
+git-time start         # Still works, redirects to gq time start
+git-sync-all           # Still works, redirects to gq sync
 ```
 
 But we recommend using the new unified style.
@@ -88,10 +88,10 @@ But we recommend using the new unified style.
 
 ```bash
 git-quick --help              # Main help
-git-quick story --help        # Story help
-git-quick time --help         # Time help
-git-quick time start --help   # Time start help
-git-quick sync --help         # Sync help
+gq story --help        # Story help
+gq time --help         # Time help
+gq time start --help   # Time start help
+gq sync --help         # Sync help
 ```
 
 ## Examples
@@ -106,17 +106,17 @@ echo "feature" >> file.txt
 git-quick
 
 # See what you did
-git-quick story
+gq story
 
 # Track your time
-git-quick time report
+gq time report
 ```
 
 ### Using Subcommands
 
 ```bash
 # Start tracking time
-git-quick time start
+gq time start
 
 # Work on feature...
 
@@ -124,29 +124,29 @@ git-quick time start
 git-quick -m "feat: add awesome feature"
 
 # Check commit history
-git-quick story --group-by type
+gq story --group-by type
 
 # Stop tracking
-git-quick time stop
+gq time stop
 
 # Sync all branches
-git-quick sync
+gq sync
 ```
 
 ### Advanced Usage
 
 ```bash
 # Show last 10 commits grouped by author
-git-quick story --group-by author --max 10
+gq story --group-by author --max 10
 
 # Export changelog
-git-quick story --format markdown > CHANGELOG.md
+gq story --format markdown > CHANGELOG.md
 
 # Time report for specific branch
-git-quick time report --branch feature-branch
+gq time report --branch feature-branch
 
 # Dry run sync
-git-quick sync --dry-run
+gq sync --dry-run
 ```
 
 ## Why This Change?
@@ -162,6 +162,7 @@ git-quick sync --dry-run
 ### Comparison
 
 **Old way:**
+
 ```bash
 $ which git-quick
 /usr/local/bin/git-quick
@@ -177,6 +178,7 @@ $ which git-sync-all
 ```
 
 **New way:**
+
 ```bash
 $ which git-quick
 /usr/local/bin/git-quick
@@ -196,10 +198,10 @@ The new structure enables better tab completion:
 git-quick <TAB>
   story  time  sync  commit
 
-git-quick time <TAB>
+gq time <TAB>
   start  stop  report
 
-git-quick story <TAB>
+gq story <TAB>
   --group-by  --format  --max  --since
 ```
 
@@ -210,12 +212,13 @@ You can still create short aliases:
 ```bash
 # In ~/.bashrc or ~/.zshrc
 alias gq='git-quick'
-alias gqs='git-quick story'
-alias gqt='git-quick time'
-alias gqsync='git-quick sync'
+alias gqs='gq story'
+alias gqt='gq time'
+alias gqsync='gq sync'
 ```
 
 Then use:
+
 ```bash
 gq                    # Quick commit
 gqs                   # Story
@@ -242,9 +245,9 @@ git-sync-all
 # New script (recommended)
 #!/bin/bash
 git-quick
-git-quick story
-git-quick time report
-git-quick sync
+gq story
+gq time report
+gq sync
 ```
 
 ### If You Have Aliases
@@ -260,9 +263,9 @@ alias gsa='git-sync-all'
 
 # New (recommended)
 alias gq='git-quick'
-alias gqs='git-quick story'
-alias gqt='git-quick time'
-alias gqsync='git-quick sync'
+alias gqs='gq story'
+alias gqt='gq time'
+alias gqsync='gq sync'
 ```
 
 ## Summary
@@ -270,6 +273,7 @@ alias gqsync='git-quick sync'
 **Single unified command:** `git-quick`
 
 **With subcommands:**
+
 - `story` - Commit history
 - `time` - Time tracking
 - `sync` - Sync branches

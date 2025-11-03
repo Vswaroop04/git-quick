@@ -39,9 +39,9 @@ git-quick/
 │   ├── git_utils.py       # Git operations
 │   ├── ai_commit.py       # AI commit message generation
 │   └── commands/          # Command implementations
-│       ├── story.py       # git-story command
-│       ├── time_tracker.py # git-time command
-│       └── sync.py        # git-sync-all command
+│       ├── story.py       # gq story command
+│       ├── time_tracker.py # gq time command
+│       └── sync.py        # gq sync command
 ├── tests/                 # Tests
 ├── vscode-extension/      # VS Code extension
 └── docs/                  # Documentation

@@ -2,7 +2,7 @@
 
 Complete guide to using Git Quick.
 
-## git-quick
+## gq (git-quick)
 
 Quick commit and push with AI-generated messages.
 
@@ -10,25 +10,27 @@ Quick commit and push with AI-generated messages.
 
 ```bash
 # Quick commit and push (interactive)
-git-quick
+gq
 
 # With custom message
-git-quick -m "feat: add new feature"
+gq -m "feat: add new feature"
 
 # Without push
-git-quick --no-push
+gq --no-push
 
 # Without AI (use fallback)
-git-quick --no-ai
+gq --no-ai
 
 # Dry run (see what would happen)
-git-quick --dry-run
+gq --dry-run
 ```
+
+Note: `git-quick` still works as a backward-compatible alias.
 
 ### Workflow
 
 1. Make changes to your files
-2. Run `git-quick`
+2. Run `gq`
 3. Review generated commit message
 4. Confirm or edit
 5. Automatically pushed to remote
@@ -36,7 +38,7 @@ git-quick --dry-run
 ### Example Session
 
 ```bash
-$ git-quick
+$ gq
 
 📋 Current status:
  M src/main.py
@@ -62,7 +64,7 @@ Use this message? [Y/n]: y
 ✨ Done!
 ```
 
-## git-story
+## gq story (git-story)
 
 Show commit history in a beautiful format.
 
@@ -70,28 +72,30 @@ Show commit history in a beautiful format.
 
 ```bash
 # Show commits since last release
-git-story
+gq story
 
 # Show commits since specific tag
-git-story --since v1.0.0
+gq story --since v1.0.0
 
 # Group by type (feat, fix, etc.)
-git-story --group-by type
+gq story --group-by type
 
 # Group by author
-git-story --group-by author
+gq story --group-by author
 
 # Limit number of commits
-git-story --max 20
+gq story --max 20
 
 # Export to markdown
-git-story --format markdown > CHANGELOG.md
+gq story --format markdown > CHANGELOG.md
 ```
+
+Note: `git-story` still works as a backward-compatible alias.
 
 ### Example Output
 
 ```bash
-$ git-story --group-by type
+$ gq story --group-by type
 
 ╭─ 📖 Commit Story ──────────────────────╮
 │ 15 commits                             │
@@ -111,7 +115,7 @@ DOCS
   • g7h8i9j add API documentation
 ```
 
-## git-time
+## gq time (git-time)
 
 Track time spent on branches.
 
@@ -119,25 +123,27 @@ Track time spent on branches.
 
 ```bash
 # Start tracking current branch
-git-time start
+gq time start
 
 # Stop tracking
-git-time stop
+gq time stop
 
 # Show report for current branch
-git-time report
+gq time report
 
 # Show report for all branches
-git-time report --all
+gq time report --all
 
 # Show report for specific branch
-git-time report --branch feature-branch
+gq time report --branch feature-branch
 ```
+
+Note: `git-time` still works as a backward-compatible alias.
 
 ### Example Output
 
 ```bash
-$ git-time report --all
+$ gq time report --all
 
 ⏱️  Time Tracking Report
 
@@ -150,7 +156,7 @@ $ git-time report --all
 └────────────────┴──────────┴──────────┴──────────┘
 ```
 
-## git-sync-all
+## gq sync (git-sync-all)
 
 Update all local branches from remote.
 
@@ -158,19 +164,21 @@ Update all local branches from remote.
 
 ```bash
 # Sync all branches
-git-sync-all
+gq sync
 
 # Dry run (preview)
-git-sync-all --dry-run
+gq sync --dry-run
 
 # Without pruning deleted branches
-git-sync-all --no-prune
+gq sync --no-prune
 ```
+
+Note: `git-sync-all` still works as a backward-compatible alias.
 
 ### Example Output
 
 ```bash
-$ git-sync-all
+$ gq sync
 
 ╭─ 🔄 Syncing all branches ────────────────╮
 │                                           │
@@ -254,7 +262,7 @@ feat({{scope}}): {{description}}
 
 Use with:
 ```bash
-git-quick --template feature
+gq --template feature
 ```
 
 ### Scripting
@@ -272,7 +280,7 @@ if git diff-index --quiet HEAD --; then
 fi
 
 # Quick commit with AI
-git-quick --no-push
+gq --no-push
 
 # Run tests
 npm test
@@ -307,21 +315,26 @@ jobs:
         run: |
           git config user.name "Bot"
           git config user.email "bot@example.com"
-          git-quick -m "chore: automated update"
+          gq -m "chore: automated update"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Tips & Tricks
 
-### 1. Use Aliases
+### 1. Shell Aliases
+
+The `gq` command is the primary interface. For backward compatibility:
 
 ```bash
-# Add to ~/.bashrc or ~/.zshrc
-alias gq='git-quick'
-alias gs='git-story'
-alias gt='git-time'
-alias gsa='git-sync-all'
+# These are built-in aliases (no need to add them):
+gq          # Quick commit
+gq story    # Show commit history
+gq time     # Time tracking
+gq sync     # Sync all branches
+
+# Old commands still work:
+git-quick, git-story, git-time, git-sync-all
 ```
 
 ### 2. Configure Per-Repository
@@ -339,10 +352,10 @@ auto_push = false     # Manual push
 ```bash
 # Add to ~/.gitconfig
 [alias]
-    quick = !git-quick
-    story = !git-story
-    time = !git-time
-    sync = !git-sync-all
+    quick = !gq
+    story = !gq story
+    time = !gq time
+    sync = !gq sync
 ```
 
 Then use:
@@ -355,7 +368,7 @@ git story
 
 ```bash
 # Quick workflow
-git-quick && npm run build && npm run test
+gq && npm run build && npm run test
 ```
 
 ## Common Workflows
@@ -365,18 +378,18 @@ git-quick && npm run build && npm run test
 ```bash
 # Start new feature
 git checkout -b feature/awesome
-git-time start
+gq time start
 
 # Make changes...
 
 # Quick commit
-git-quick
+gq
 
 # More changes...
 
 # See your progress
-git-story
-git-time report
+gq story
+gq time report
 ```
 
 ### Bug Fix
@@ -388,7 +401,7 @@ git checkout -b fix/bug-123
 # Fix the bug...
 
 # Quick commit with AI message
-git-quick
+gq
 
 # Check commit message
 git log -1
@@ -398,13 +411,13 @@ git log -1
 
 ```bash
 # Sync everything
-git-sync-all
+gq sync
 
 # Generate changelog
-git-story --format markdown > CHANGELOG.md
+gq story --format markdown > CHANGELOG.md
 
 # Check time spent
-git-time report --all
+gq time report --all
 ```
 
 ## Next Steps

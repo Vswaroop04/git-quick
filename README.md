@@ -17,7 +17,7 @@ npm install -g git-quick-cli
 pip install git-quick
 ```
 
-**First Run:** git-quick will automatically guide you through AI setup on first use!
+**First Run:** `gq` will automatically guide you through AI setup on first use!
 
 [See all installation options →](docs/INSTALLATION.md)
 
@@ -25,32 +25,32 @@ pip install git-quick
 
 ### Core Commands
 
-- **`git-quick`** - Combines `git add`, `commit`, and `push` with smart defaults
+- **`gq`** - Combines `git add`, `commit`, and `push` with smart defaults
 
   - Auto-detects branch
   - AI-generated commit messages from diffs
   - Emoji/scope support (gitmoji-style)
   - Interactive mode for fine-tuning
 
-- **`git-quick story`** - Compact, colorized commit summary
+- **`gq story`** - Compact, colorized commit summary
 
   - Shows commits since last release/tag
   - Grouped by author, date, or type
   - Export to markdown for changelogs
 
-- **`git-quick time start`** - Track development time per branch/feature
+- **`gq time start`** - Track development time per branch/feature
 
   - Automatic time tracking per branch
   - Reports with breakdowns
   - Integration with time-tracking tools
 
-- **`git-quick sync`** - Update all local branches safely
+- **`gq sync`** - Update all local branches safely
 
   - Stash uncommitted changes
   - Fast-forward all branches
   - Conflict detection and reporting
 
-- **`git-quick --setup`** - Run setup wizard
+- **`gq --setup`** - Run setup wizard
   - Configure/Change AI providers
   - Configure other settings
 
@@ -73,7 +73,7 @@ npm install -g git-quick-cli
 pip install git-quick
 ```
 
-**Note:** git-quick works immediately after installation! It uses intelligent commit message generation based on your changes. For AI-powered messages, optionally install Ollama (see below).
+**Note:** `gq` works immediately after installation! It uses intelligent commit message generation based on your changes. For AI-powered messages, optionally install Ollama (see below).
 
 ### Optional: AI-Powered Messages (Ollama)
 
@@ -114,20 +114,20 @@ pip install -e .
 
 ```bash
 # First time: Run setup wizard
-git-quick --setup
+gq --setup
 
-# Or just run git-quick and it will prompt you automatically
-git-quick
+# Or just run gq and it will prompt you automatically
+gq
 
 # Other commands
-git-story              # See your commit story
-git-time report        # Track your time
-git-sync-all           # Sync all branches
+gq story              # See your commit story
+gq time report        # Track your time
+gq sync               # Sync all branches
 ```
 
 ### First-Time Setup
 
-On your first run, git-quick will ask you to choose an AI provider:
+On your first run, `gq` will ask you to choose an AI provider:
 
 1. **Ollama** (Recommended) - Free, local, private AI
 
@@ -145,7 +145,7 @@ On your first run, git-quick will ask you to choose an AI provider:
 4. **No AI** - Smart fallback mode
    - Works immediately, no setup needed
 
-You can always reconfigure later with `git-quick --setup`
+You can always reconfigure later with `gq --setup`
 
 ## Configuration
 

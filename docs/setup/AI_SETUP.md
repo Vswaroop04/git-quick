@@ -2,10 +2,10 @@
 
 ## Where AI is Used
 
-AI is used in **one place**: the `git-quick` command to automatically generate commit messages from your code changes.
+AI is used in **one place**: the `gq` command to automatically generate commit messages from your code changes.
 
 **Flow:**
-1. You run `git-quick`
+1. You run `gq`
 2. It reads your git diff (changes)
 3. Sends to AI provider
 4. AI generates a commit message like: `feat(auth): add login support`
@@ -38,7 +38,7 @@ ollama pull llama3
 ollama serve
 
 # 4. Run it!
-git-quick
+gq
 ```
 
 **How it works:**
@@ -76,7 +76,7 @@ openai_api_key = "sk-proj-your-key-here"
 EOF
 
 # 3. Use it!
-git-quick
+gq
 ```
 
 **Cost:**
@@ -107,7 +107,7 @@ anthropic_api_key = "sk-ant-your-key-here"
 EOF
 
 # 3. Use it!
-git-quick
+gq
 ```
 
 **Cost:**
@@ -125,7 +125,7 @@ git-quick
 
 ```bash
 # Just use the --no-ai flag
-git-quick --no-ai
+gq --no-ai
 
 # Or set as default in config
 cat > ~/.gitquick.toml << 'EOF'
@@ -208,10 +208,10 @@ curl http://localhost:11434/api/version
 # Test with dry-run
 cd /path/to/git/repo
 echo "test" >> README.md
-git-quick --dry-run  # Won't actually commit
+gq --dry-run  # Won't actually commit
 
 # Test without AI
-git-quick --no-ai --dry-run
+gq --no-ai --dry-run
 
 # See what AI provider is configured
 cat ~/.gitquick.toml
@@ -263,7 +263,7 @@ ai_model = "codellama"
 ### Want to disable AI temporarily?
 ```bash
 # Just use the flag
-git-quick --no-ai
+gq --no-ai
 ```
 
 ## Comparison
@@ -298,13 +298,13 @@ ollama pull llama3.2
 # Daily usage
 cd ~/my-project
 # ... make changes ...
-git-quick
+gq
 # ✨ feat(api): add user endpoint
 # Confirm? [Y/n]: y
 # ✓ Committed and pushed!
 
 # No AI version
-git-quick --no-ai
+gq --no-ai
 # chore: update 3 files
 # Confirm? [Y/n]: y
 ```

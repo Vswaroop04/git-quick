@@ -10,13 +10,13 @@ Override any setting temporarily for a single command:
 
 ```bash
 # Use different AI provider for one command
-GITQUICK_AI_PROVIDER=openai git-quick
+GITQUICK_AI_PROVIDER=openai gq
 
 # Use different model
-GITQUICK_AI_MODEL=gpt-4o git-quick
+GITQUICK_AI_MODEL=gpt-4o gq
 
 # Disable auto-push
-GITQUICK_AUTO_PUSH=false git-quick
+GITQUICK_AUTO_PUSH=false gq
 ```
 
 **Available Environment Variables:**
@@ -79,7 +79,7 @@ completed = true                # Setup wizard completed
 Run the interactive setup wizard anytime:
 
 ```bash
-git-quick --setup
+gq --setup
 ```
 
 This will guide you through:
@@ -110,7 +110,7 @@ openai_api_key = "sk-proj-your-key-here"
 
 **Option 2: Run setup wizard**
 ```bash
-git-quick --setup
+gq --setup
 # Choose option 2 (OpenAI)
 ```
 
@@ -129,7 +129,7 @@ ai_model = "codellama"  # or "mistral", "llama3.2", etc.
 
 Or use environment variable:
 ```bash
-GITQUICK_AI_MODEL=codellama git-quick
+GITQUICK_AI_MODEL=codellama gq
 ```
 
 ### Disable Auto-Push
@@ -147,7 +147,7 @@ auto_push = false
 
 Or use flag:
 ```bash
-git-quick --no-push
+gq --no-push
 ```
 
 ### Disable Emojis
@@ -165,14 +165,14 @@ emoji_style = "none"
 
 Or use flag:
 ```bash
-git-quick --no-emoji
+gq --no-emoji
 ```
 
 ### Use Fallback Mode (No AI)
 
 **Temporary:**
 ```bash
-git-quick --no-ai
+gq --no-ai
 ```
 
 **Permanent:**
@@ -203,7 +203,7 @@ This runs in the foreground. To run in background:
 nohup ollama serve > /dev/null 2>&1 &
 
 # Or use the wizard which starts it automatically
-git-quick --setup
+gq --setup
 ```
 
 ### Stop Ollama Server
@@ -252,7 +252,7 @@ ai_model = "mistral"
 
 **Option 1: Setup wizard**
 ```bash
-git-quick --setup
+gq --setup
 # Choose option 2 (OpenAI)
 # Enter your API key when prompted
 ```
@@ -276,7 +276,7 @@ openai_api_key = "sk-proj-your-key-here"
 
 **Option 1: Setup wizard**
 ```bash
-git-quick --setup
+gq --setup
 # Choose option 3 (Anthropic)
 # Enter your API key when prompted
 ```
@@ -305,12 +305,12 @@ anthropic_api_key = "sk-ant-your-key-here"
 2. **Use environment variables for CI/CD**
    ```bash
    export GITQUICK_AI_PROVIDER=fallback
-   git-quick --no-ai -y
+   gq --no-ai -y
    ```
 
 3. **Rotate keys regularly**
    - Update keys in config file
-   - Or run `git-quick --setup` to enter new keys
+   - Or run `gq --setup` to enter new keys
 
 ## Project-Specific Configuration
 
@@ -349,7 +349,7 @@ Settings are loaded in this order (later overrides earlier):
 cat ~/.gitquick.toml
 
 # Test with dry-run to see what would happen
-git-quick --dry-run
+gq --dry-run
 ```
 
 ### Reset to Defaults
@@ -359,7 +359,7 @@ git-quick --dry-run
 rm ~/.gitquick.toml
 
 # Run setup wizard again
-git-quick --setup
+gq --setup
 ```
 
 ### Verify AI Provider
@@ -385,7 +385,7 @@ curl https://api.anthropic.com/v1/messages \
 ```bash
 GITQUICK_AI_PROVIDER=openai \
 GITQUICK_AI_MODEL=gpt-4o \
-git-quick
+gq
 ```
 
 ### Example 2: Disable AI for CI/CD
@@ -393,7 +393,7 @@ git-quick
 ```bash
 # In your CI/CD pipeline
 export GITQUICK_AI_PROVIDER=fallback
-git-quick --no-ai -y
+gq --no-ai -y
 ```
 
 ### Example 3: Different Settings for Work vs Personal
@@ -419,29 +419,29 @@ conventional_commits = true
 Use with:
 ```bash
 # Work
-GITQUICK_CONFIG=~/.gitquick-work.toml git-quick
+GITQUICK_CONFIG=~/.gitquick-work.toml gq
 
 # Personal (default)
-git-quick
+gq
 ```
 
 ## Getting Help
 
-- Run setup wizard: `git-quick --setup`
-- View all options: `git-quick --help`
-- Check version: `git-quick --version`
+- Run setup wizard: `gq --setup`
+- View all options: `gq --help`
+- Check version: `gq --version`
 - View config: `cat ~/.gitquick.toml`
 
 ## Summary
 
 **Quick Start:**
-1. Run `git-quick --setup` for interactive configuration
+1. Run `gq --setup` for interactive configuration
 2. Or edit `~/.gitquick.toml` manually
 3. Use environment variables for temporary overrides
 4. Use command-line flags for one-off changes
 
 **Most Common:**
-- Change AI provider: `git-quick --setup`
-- Disable auto-push: `git-quick --no-push`
-- Disable AI: `git-quick --no-ai`
+- Change AI provider: `gq --setup`
+- Disable auto-push: `gq --no-push`
+- Disable AI: `gq --no-ai`
 - Change model: Edit `ai_model` in `~/.gitquick.toml`

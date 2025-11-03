@@ -22,11 +22,11 @@ brew install git-quick         ┘
 
 ```bash
 git-quick                # Quick commit & push (default)
-git-quick story          # Show commit history
-git-quick time start     # Time tracking
-git-quick time stop
-git-quick time report
-git-quick sync           # Sync all branches
+gq story          # Show commit history
+gq time start     # Time tracking
+gq time stop
+gq time report
+gq sync           # Sync all branches
 ```
 
 ## Installation Comparison
@@ -51,7 +51,7 @@ git-quick = "git_quick.cli:cli"
 **Flow:**
 
 ```
-User runs: git-quick story
+User runs: gq story
     ↓
 Python entry point: git_quick.cli:cli
     ↓
@@ -75,7 +75,7 @@ Executes: story command
 **Flow:**
 
 ```
-User runs: git-quick story
+User runs: gq story
     ↓
 Node wrapper: bin/git-quick.js
     ↓
@@ -106,7 +106,7 @@ end
 **Flow:**
 
 ```
-User runs: git-quick story
+User runs: gq story
     ↓
 Virtualenv Python: /usr/local/bin/git-quick
     ↓
@@ -160,9 +160,9 @@ git-quick     # Single command with subcommands
 
 ```bash
 git-quick              # Default action
-git-quick story        # Subcommand
-git-quick time start   # Nested subcommand
-git-quick sync         # Subcommand
+gq story        # Subcommand
+gq time start   # Nested subcommand
+gq sync         # Subcommand
 ```
 
 ## User Experience
@@ -185,7 +185,7 @@ Commands:
   time    Time tracking commands
   sync    Sync all branches
 
-$ git-quick story
+$ gq story
 📖 Commit Story
 15 commits
 ```
@@ -208,7 +208,7 @@ Commands:
   time    Time tracking commands
   sync    Sync all branches
 
-$ git-quick story
+$ gq story
 📖 Commit Story
 15 commits
 ```
@@ -231,7 +231,7 @@ Commands:
   time    Time tracking commands
   sync    Sync all branches
 
-$ git-quick story
+$ gq story
 📖 Commit Story
 15 commits
 ```
@@ -304,9 +304,9 @@ Follows patterns used by popular tools:
 Old commands still work (for Python package):
 
 ```bash
-git-story      # Still works → redirects to git-quick story
-git-time       # Still works → redirects to git-quick time
-git-sync-all   # Still works → redirects to git-quick sync
+git-story      # Still works → redirects to gq story
+git-time       # Still works → redirects to gq time
+git-sync-all   # Still works → redirects to gq sync
 ```
 
 But these are now deprecated. We recommend using the new unified structure.
@@ -324,7 +324,7 @@ But we recommend updating:
 git-story
 
 # New (recommended)
-git-quick story
+gq story
 ```
 
 ### For Scripts
@@ -342,9 +342,9 @@ git-sync-all
 # New script (recommended)
 #!/bin/bash
 git-quick
-git-quick story
-git-quick time report
-git-quick sync
+gq story
+gq time report
+gq sync
 ```
 
 ## Summary
@@ -355,9 +355,9 @@ git-quick sync
 
 ```bash
 git-quick               # Main command
-git-quick story         # Subcommand
-git-quick time start    # Nested subcommand
-git-quick sync          # Subcommand
+gq story         # Subcommand
+gq time start    # Nested subcommand
+gq sync          # Subcommand
 ```
 
 **How:** npm and Homebrew are just wrappers that call the same Python CLI core.

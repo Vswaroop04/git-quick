@@ -10,56 +10,56 @@ pip install git-quick           # pip (Python)
 
 ## Commands
 
-**Single unified command with subcommands:**
+**Primary command: `gq` with subcommands:**
 
-| Command | What it does |
-|---------|--------------|
-| `git-quick` | Stage, commit, and push with AI message (default) |
-| `git-quick story` | Show beautiful commit history |
-| `git-quick time start` | Start tracking time on current branch |
-| `git-quick time report` | Show time report |
-| `git-quick sync` | Update all branches from remote |
+| Command          | What it does                                      |
+| ---------------- | ------------------------------------------------- |
+| `gq`             | Stage, commit, and push with AI message (default) |
+| `gq story`       | Show beautiful commit history                     |
+| `gq time start`  | Start tracking time on current branch             |
+| `gq time report` | Show time report                                  |
+| `gq sync`        | Update all branches from remote                   |
 
-**Tip:** Old commands (`git-story`, `git-time`, `git-sync-all`) still work for backward compatibility!
+**Backward compatibility:** Old commands (`git-quick`, `git-story`, `git-time`, `git-sync-all`) still work!
 
 ## Common Usage
 
 ```bash
 # Quick commit (AI generates message)
-git-quick
+gq
 
 # Quick commit with your message
-git-quick -m "feat: add login"
+gq -m "feat: add login"
 
 # Commit without push
-git-quick --no-push
+gq --no-push
 
 # Without AI (fallback mode)
-git-quick --no-ai
+gq --no-ai
 
 # Dry run (see what would happen)
-git-quick --dry-run
+gq --dry-run
 
 # Skip confirmation prompts (non-interactive)
-git-quick --yes
-git-quick -y
+gq --yes
+gq -y
 
 # Show commit history
-git-quick story
+gq story
 
 # Group by type (feat, fix, docs)
-git-quick story --group-by type
+gq story --group-by type
 
 # Export to markdown
-git-quick story --format markdown > CHANGELOG.md
+gq story --format markdown > CHANGELOG.md
 
 # Track time
-git-quick time start
-git-quick time stop
-git-quick time report --all
+gq time start
+gq time stop
+gq time report --all
 
 # Sync all branches
-git-quick sync
+gq sync
 ```
 
 ## AI Setup (Optional - git-quick works without it!)
@@ -67,13 +67,15 @@ git-quick sync
 **git-quick works immediately after install** with intelligent fallback messages based on file types.
 
 **Ollama (Optional - Free, Local AI):**
+
 ```bash
 curl -fsSL https://ollama.ai/install.sh | sh
 ollama pull llama3
-git-quick  # Now uses AI!
+gq  # Now uses AI!
 ```
 
 **OpenAI (Optional - Paid):**
+
 ```bash
 cat > ~/.gitquick.toml << 'EOF'
 [quick]
@@ -84,8 +86,9 @@ EOF
 ```
 
 **Force fallback mode (skip AI):**
+
 ```bash
-git-quick --no-ai
+gq --no-ai
 ```
 
 ## Configuration File
@@ -104,14 +107,22 @@ anthropic_api_key = ""
 ollama_host = "http://localhost:11434"
 ```
 
-## Aliases (Optional)
+## Command Structure
 
+Primary command is `gq`:
 ```bash
-# Add to ~/.bashrc or ~/.zshrc
-alias gq='git-quick'
-alias gs='git-story'
-alias gt='git-time'
-alias gsa='git-sync-all'
+gq              # Quick commit (main command)
+gq story        # Commit history
+gq time         # Time tracking
+gq sync         # Sync branches
+```
+
+Legacy aliases still work:
+```bash
+git-quick       # Same as gq
+git-story       # Same as gq story
+git-time        # Same as gq time
+git-sync-all    # Same as gq sync
 ```
 
 ## Troubleshooting
@@ -121,10 +132,10 @@ alias gsa='git-sync-all'
 export PATH="$HOME/.local/bin:$PATH"
 
 # Check version
-git-quick --version
+gq --version
 
 # Get help
-git-quick --help
+gq --help
 ```
 
 ## More Info

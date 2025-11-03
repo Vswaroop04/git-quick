@@ -14,7 +14,7 @@ brew tap yourusername/git-quick
 brew install git-quick
 
 # Verify
-git-quick --version
+gq --version
 ```
 
 **Advantages:**
@@ -22,7 +22,7 @@ git-quick --version
 - ✅ Automatic dependency management
 - ✅ Easy updates (`brew upgrade git-quick`)
 - ✅ Clean uninstall (`brew uninstall git-quick`)
-- ✅ Includes shorter aliases (gq, gs, gt)
+- ✅ Primary command is `gq` (git-quick also works)
 
 **Post-install (optional):**
 
@@ -39,7 +39,7 @@ ollama pull llama3.2
 npm install -g git-quick-cli
 
 # Verify
-git-quick --version
+gq --version
 ```
 
 **Advantages:**
@@ -63,7 +63,7 @@ cd git-quick
 pip install -e .
 
 # Verify
-git-quick --version
+gq --version
 ```
 
 **Advantages:**
@@ -84,7 +84,7 @@ cd git-quick
 pip install -e ".[dev]"
 
 # Verify
-git-quick --version
+gq --version
 ```
 
 **Advantages:**
@@ -108,13 +108,16 @@ git-quick --version
 
 ```bash
 # Check if commands are available
-which git-quick
-git-quick --version
+which gq
+gq --version
 
-# Test other commands
-git-story --help
-git-time --help
-git-sync-all --help
+# Test subcommands
+gq story --help
+gq time --help
+gq sync --help
+
+# Note: Old commands still work for backward compatibility
+which git-quick
 ```
 
 ### 2. Set Up AI Provider (Optional)
@@ -132,7 +135,7 @@ brew install ollama
 ollama pull llama3.2
 
 # Test
-git-quick
+gq
 ```
 
 **Option B: OpenAI/Anthropic**
@@ -148,41 +151,23 @@ openai_api_key = "sk-proj-YOUR-KEY"
 EOF
 ```
 
-### 3. Create Shell Aliases (Optional)
+### 3. Verify Commands
 
-**Bash/Zsh:**
+The primary command is `gq` with subcommands:
 
 ```bash
-# Add to ~/.bashrc or ~/.zshrc
-cat >> ~/.bashrc << 'EOF'
-# Git Quick aliases
-alias gq='git-quick'
-alias gs='git-story'
-alias gt='git-time'
-alias gsa='git-sync-all'
-EOF
-
-source ~/.bashrc
+gq              # Quick commit (default)
+gq story        # Commit history
+gq time         # Time tracking
+gq sync         # Sync branches
 ```
 
-**Fish:**
-
-```fish
-# Add to ~/.config/fish/config.fish
-abbr gq git-quick
-abbr gs git-story
-abbr gt git-time
-abbr gsa git-sync-all
-```
-
-**PowerShell (Windows):**
-
-```powershell
-# Add to $PROFILE
-Set-Alias -Name gq -Value git-quick
-Set-Alias -Name gs -Value git-story
-Set-Alias -Name gt -Value git-time
-Set-Alias -Name gsa -Value git-sync-all
+Old commands still work for backward compatibility:
+```bash
+git-quick       # Same as gq
+git-story       # Same as gq story
+git-time        # Same as gq time
+git-sync-all    # Same as gq sync
 ```
 
 ### 4. Test Installation
@@ -192,10 +177,10 @@ Set-Alias -Name gsa -Value git-sync-all
 cd /path/to/your/git/repo
 
 # Test commands
-git-quick --dry-run
-git-story
-git-time report
-git-sync-all --dry-run
+gq --dry-run
+gq story
+gq time report
+gq sync --dry-run
 ```
 
 ## Platform-Specific Instructions
@@ -326,7 +311,7 @@ pip uninstall git-quick
 
 ## Troubleshooting
 
-### "command not found: git-quick"
+### "command not found: gq"
 
 **Check PATH:**
 
