@@ -31,23 +31,27 @@ class AICommitGenerator:
         if len(files) > 5:
             files_str += f" and {len(files) - 5} more"
 
-        prompt = f"""Generate a concise git commit message for the following changes.
+        # Limit diff size to avoid token limits
+        diff_excerpt = diff[:2000] if len(diff) > 2000 else diff
+
+        prompt = f"""You are a git commit message generator. Analyze the changes and output ONLY the commit message in conventional commit format.
 
 Files changed: {files_str}
 
 Diff:
-{diff[:2000]}  # Limit diff size
+{diff_excerpt}
 
-Requirements:
-- Use conventional commit format: type(scope): description
-- Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore
-- Keep description under 72 characters
-- Be specific but concise
-- No period at the end
+Format: type(scope): description
 
-Example: "feat(auth): add OAuth2 login support"
+Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore
+Keep under 72 characters. Be specific and concise. No period at the end.
 
-Generate only the commit message, nothing else:"""
+Example outputs:
+- feat(auth): add OAuth2 login support
+- fix(api): resolve null pointer in user endpoint
+- docs(readme): update installation instructions
+
+Output ONLY the commit message (no explanations, no quotes, no preamble):"""
 
         return prompt
 
@@ -150,6 +154,23 @@ Generate only the commit message, nothing else:"""
 
         # Remove quotes
         message = message.strip('"\'')
+
+        # Remove common AI preambles
+        preambles = [
+            r"^Here is a (concise )?git commit message( for these changes)?:\s*",
+            r"^Here's a (concise )?git commit message( for these changes)?:\s*",
+            r"^Commit message:\s*",
+            r"^The commit message is:\s*",
+            r"^Output:\s*",
+            r"^-\s*",  # Remove leading dash from bullet points
+        ]
+        for preamble in preambles:
+            message = re.sub(preamble, "", message, flags=re.IGNORECASE)
+
+        message = message.strip()
+
+        # Fix common AI mistakes: "fix/docs:" -> "docs:"
+        message = re.sub(r"^(?:feat|fix|docs|style|refactor|perf|test|build|ci|chore)/", "", message)
 
         # Ensure conventional commit format
         if not re.match(r"^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)", message):

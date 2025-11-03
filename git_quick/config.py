@@ -11,7 +11,7 @@ DEFAULT_CONFIG = {
         "auto_push": True,
         "emoji_style": "gitmoji",
         "ai_provider": "ollama",
-        "ai_model": "llama3.2",
+        "ai_model": "llama3",
         "conventional_commits": True,
     },
     "story": {
@@ -110,7 +110,7 @@ class Config:
     @property
     def ai_model(self) -> str:
         """Get AI model."""
-        return self.get("quick", "ai_model", "llama3.2")
+        return self.get("quick", "ai_model", "llama3")
 
     def get_gitmoji(self, commit_type: str) -> str:
         """Get emoji for commit type."""

@@ -22,11 +22,23 @@ AI is used in **one place**: the `git-quick` command to automatically generate c
 # 1. Install Ollama
 curl -fsSL https://ollama.ai/install.sh | sh
 
-# 2. Download a model (one-time, ~2GB)
-ollama pull llama3.2
+# or
 
-# 3. That's it! No configuration needed
-git-quick  # Will automatically use Ollama
+brew install ollama
+
+# 2. Download a model (one-time, ~2GB)
+ollama pull llama3
+
+# or
+
+ollama pull llama3
+
+
+# 3. Run or serve
+ollama serve
+
+# 4. Run it!
+git-quick
 ```
 
 **How it works:**
