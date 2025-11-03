@@ -1,0 +1,148 @@
+name: Manual Publish
+
+# Only runs when you manually trigger it from GitHub Actions tab
+on:
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'Version bump type'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+          - none
+        default: 'patch'
+      custom_version:
+        description: 'Custom version (leave empty to auto-bump)'
+        required: false
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Calculate version
+        id: version
+        run: |
+          CURRENT_VERSION=$(python -c "import tomllib; f = open('pyproject.toml', 'rb'); data = tomllib.load(f); print(data['project']['version'])")
+          echo "Current version: $CURRENT_VERSION"
+
+          if [ -n "${{ inputs.custom_version }}" ]; then
+            NEW_VERSION="${{ inputs.custom_version }}"
+            echo "Using custom version: $NEW_VERSION"
+          elif [ "${{ inputs.version_bump }}" = "none" ]; then
+            NEW_VERSION="$CURRENT_VERSION"
+            echo "No version bump, using: $NEW_VERSION"
+          else
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
+
+            case "${{ inputs.version_bump }}" in
+              major)
+                MAJOR=$((MAJOR + 1))
+                MINOR=0
+                PATCH=0
+                ;;
+              minor)
+                MINOR=$((MINOR + 1))
+                PATCH=0
+                ;;
+              patch)
+                PATCH=$((PATCH + 1))
+                ;;
+            esac
+
+            NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+            echo "Auto-bumped to: $NEW_VERSION"
+          fi
+
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Update versions
+        if: steps.version.outputs.new_version != steps.version.outputs.current_version
+        run: |
+          OLD_VERSION="${{ steps.version.outputs.current_version }}"
+          NEW_VERSION="${{ steps.version.outputs.new_version }}"
+
+          sed -i "s/version = \"${OLD_VERSION}\"/version = \"${NEW_VERSION}\"/" pyproject.toml
+          sed -i "s/\"version\": \"${OLD_VERSION}\"/\"version\": \"${NEW_VERSION}\"/" package.json
+          sed -i "s/@click.version_option(version=\"${OLD_VERSION}\"/@click.version_option(version=\"${NEW_VERSION}\"/" git_quick/cli.py
+
+          git add pyproject.toml package.json git_quick/cli.py
+          git commit -m "chore: bump version to ${NEW_VERSION} [skip ci]"
+          git tag -a "v${NEW_VERSION}" -m "Release v${NEW_VERSION}"
+          git push origin main
+          git push origin --tags
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine
+
+      - name: Build package
+        run: python -m build
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.version.outputs.new_version }}
+          release_name: Release v${{ steps.version.outputs.new_version }}
+          body: |
+            🚀 Manual release v${{ steps.version.outputs.new_version }}
+
+            ## Installation
+
+            ```bash
+            # npm
+            npm install -g git-quick-cli@${{ steps.version.outputs.new_version }}
+
+            # pip
+            pip install git-quick==${{ steps.version.outputs.new_version }}
+            ```
+          draft: false
+          prerelease: false
+
+      - name: Summary
+        run: |
+          echo "✅ Published version ${{ steps.version.outputs.new_version }}"
+          echo "📦 PyPI: https://pypi.org/project/git-quick/${{ steps.version.outputs.new_version }}/"
+          echo "📦 npm: https://www.npmjs.com/package/git-quick-cli/v/${{ steps.version.outputs.new_version }}"
