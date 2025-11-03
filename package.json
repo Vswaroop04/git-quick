@@ -1,0 +1,46 @@
+{
+  "name": "git-quick-cli",
+  "version": "0.1.0",
+  "description": "Lightning-fast Git workflows with AI-powered commit messages",
+  "main": "index.js",
+  "bin": {
+    "git-quick": "./bin/git-quick.js"
+  },
+  "scripts": {
+    "postinstall": "node scripts/postinstall.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "git",
+    "cli",
+    "commit",
+    "ai",
+    "productivity",
+    "automation",
+    "conventional-commits",
+    "gitmoji"
+  ],
+  "author": "Vishnu Swaroop",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/git-quick.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/git-quick/issues"
+  },
+  "homepage": "https://github.com/yourusername/git-quick#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "python3": ">=3.8"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "preferGlobal": true
+}

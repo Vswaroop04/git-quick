@@ -1,6 +1,28 @@
 # Git Quick - Lightning-fast Git workflows
 
+[![PyPI](https://img.shields.io/badge/pypi-v0.1.0-blue)](https://pypi.org/project/git-quick/)
+[![npm](https://img.shields.io/badge/npm-v0.1.0-red)](https://www.npmjs.com/package/git-quick-cli)
+[![Homebrew](https://img.shields.io/badge/homebrew-available-orange)](https://github.com/yourusername/homebrew-git-quick)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.8+-blue)](https://www.python.org/)
+
 A modern CLI tool and VS Code extension that speeds up repetitive Git commands with smart defaults, AI-powered commit messages, and developer productivity features.
+
+## ⚡ Quick Install
+
+```bash
+# Homebrew (macOS/Linux)
+brew tap yourusername/git-quick
+brew install git-quick
+
+# npm (All platforms)
+npm install -g git-quick-cli
+
+# pip (Python)
+pip install git-quick
+```
+
+[See all installation options →](docs/INSTALLATION.md)
 
 ## Features
 
@@ -36,16 +58,30 @@ A modern CLI tool and VS Code extension that speeds up repetitive Git commands w
 
 ## Installation
 
+### Homebrew (macOS/Linux)
+```bash
+brew tap yourusername/git-quick
+brew install git-quick
+```
+
+### npm (Cross-platform)
+```bash
+npm install -g git-quick-cli
+```
+
+### pip (Python)
 ```bash
 pip install git-quick
 ```
 
-Or from source:
+### From Source
 ```bash
 git clone https://github.com/yourusername/git-quick.git
 cd git-quick
 pip install -e .
 ```
+
+**See [Installation Guide](docs/INSTALLATION.md) for detailed instructions, including Windows setup.**
 
 ## Quick Start
 

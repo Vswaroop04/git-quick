@@ -70,22 +70,24 @@ That's it! You'll see:
 ## Core Commands Cheatsheet
 
 ```bash
-# Quick commit & push
+# Quick commit & push (default command)
 git-quick
 
 # Quick commit with custom message
 git-quick -m "feat: add new feature"
 
 # Show commit history
-git-story
+git-quick story
 
 # Track development time
-git-time start
-git-time report
+git-quick time start
+git-quick time report
 
 # Sync all branches
-git-sync-all
+git-quick sync
 ```
+
+**One unified command:** All features now accessible via `git-quick` subcommands!
 
 ## VS Code Extension
 
