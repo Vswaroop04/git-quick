@@ -51,7 +51,7 @@ pip install git-quick
   - Conflict detection and reporting
 
 - **`git-quick --setup`** - Run setup wizard
-  - Configure AI providers
+  - Configure/Change AI providers
   - Configure other settings
 
 ### VS Code Extension (In Progress)
