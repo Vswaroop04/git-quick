@@ -31,23 +31,25 @@ git-quick sync           # Sync all branches
 
 ## Installation Comparison
 
-| Package | Installs | What It Does | Commands |
-|---------|----------|--------------|----------|
-| **pip** | Python package directly | Runs Python CLI | git-quick + subcommands |
-| **npm** | Node.js wrapper | Calls Python CLI | git-quick + subcommands |
-| **Homebrew** | Python in virtualenv | Runs Python CLI | git-quick + subcommands |
+| Package      | Installs                | What It Does     | Commands                |
+| ------------ | ----------------------- | ---------------- | ----------------------- |
+| **pip**      | Python package directly | Runs Python CLI  | git-quick + subcommands |
+| **npm**      | Node.js wrapper         | Calls Python CLI | git-quick + subcommands |
+| **Homebrew** | Python in virtualenv    | Runs Python CLI  | git-quick + subcommands |
 
 ## Technical Details
 
 ### pip Package
 
 **Entry point:** `pyproject.toml`
+
 ```toml
 [project.scripts]
 git-quick = "git_quick.cli:cli"
 ```
 
 **Flow:**
+
 ```
 User runs: git-quick story
     ↓
@@ -61,6 +63,7 @@ Executes: story command
 ### npm Package
 
 **Entry point:** `package.json`
+
 ```json
 {
   "bin": {
@@ -70,6 +73,7 @@ Executes: story command
 ```
 
 **Flow:**
+
 ```
 User runs: git-quick story
     ↓
@@ -91,6 +95,7 @@ Executes: story command
 ### Homebrew Package
 
 **Entry point:** `Formula/git-quick.rb`
+
 ```ruby
 class GitQuick < Formula
   include Language::Python::Virtualenv
@@ -99,6 +104,7 @@ end
 ```
 
 **Flow:**
+
 ```
 User runs: git-quick story
     ↓
@@ -116,6 +122,7 @@ Executes: story command
 ### Before (Separate Commands)
 
 **pip:**
+
 ```bash
 git-quick     # Installed
 git-story     # Installed
@@ -124,6 +131,7 @@ git-sync-all  # Installed
 ```
 
 **npm:**
+
 ```bash
 git-quick     # Installed
 git-story     # Installed
@@ -132,6 +140,7 @@ git-sync-all  # Installed
 ```
 
 **Homebrew:**
+
 ```bash
 git-quick     # Installed
 git-story     # Installed
@@ -142,11 +151,13 @@ git-sync-all  # Installed
 ### After (Unified Command)
 
 **ALL packages now install:**
+
 ```bash
 git-quick     # Single command with subcommands
 ```
 
 **Usage:**
+
 ```bash
 git-quick              # Default action
 git-quick story        # Subcommand
@@ -160,7 +171,7 @@ git-quick sync         # Subcommand
 
 ```bash
 $ pip install git-quick
-Successfully installed git-quick-0.1.0
+Successfully installed git-quick-1.0.0
 
 $ which git-quick
 /usr/local/bin/git-quick
@@ -183,7 +194,7 @@ $ git-quick story
 
 ```bash
 $ npm install -g git-quick-cli
-+ git-quick-cli@0.1.0
++ git-quick-cli@1.0.0
 
 $ which git-quick
 /usr/local/bin/git-quick
@@ -230,6 +241,7 @@ $ git-quick story
 ### 1. Consistent Experience
 
 **Same commands** regardless of installation method:
+
 - Developers can switch between Mac (Homebrew), Linux (pip), Windows (npm)
 - Documentation works for everyone
 - No confusion about which command to use
@@ -243,12 +255,14 @@ $ git-quick story
 ### 3. Cleaner Installation
 
 **Before:**
+
 ```bash
 $ npm install -g git-quick-cli
 Installing 4 commands: git-quick, git-story, git-time, git-sync-all
 ```
 
 **After:**
+
 ```bash
 $ npm install -g git-quick-cli
 Installing 1 command: git-quick
@@ -257,6 +271,7 @@ Installing 1 command: git-quick
 ### 4. Better Discoverability
 
 **Before:**
+
 ```bash
 $ git-quick --help
 # Only shows quick command help
@@ -264,6 +279,7 @@ $ git-quick --help
 ```
 
 **After:**
+
 ```bash
 $ git-quick --help
 Commands:
@@ -277,6 +293,7 @@ Commands:
 ### 5. Industry Standard
 
 Follows patterns used by popular tools:
+
 - `git` (git commit, git push, git log)
 - `docker` (docker run, docker ps, docker build)
 - `kubectl` (kubectl get, kubectl apply, kubectl logs)
@@ -301,6 +318,7 @@ But these are now deprecated. We recommend using the new unified structure.
 **No action needed!** Old commands still work.
 
 But we recommend updating:
+
 ```bash
 # Old (still works)
 git-story
@@ -312,6 +330,7 @@ git-quick story
 ### For Scripts
 
 Update gradually:
+
 ```bash
 # Old script (still works)
 #!/bin/bash

@@ -1,6 +1,6 @@
 {
   "name": "git-quick-cli",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Lightning-fast Git workflows with AI-powered commit messages",
   "main": "index.js",
   "bin": {

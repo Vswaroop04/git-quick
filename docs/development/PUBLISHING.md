@@ -8,15 +8,15 @@ How to publish Git Quick to PyPI, npm, and Homebrew.
 
 Update version in these files:
 
-- `pyproject.toml` → `version = "0.1.0"`
-- `package.json` → `"version": "0.1.0"`
-- `git_quick/__init__.py` → `__version__ = "0.1.0"`
+- `pyproject.toml` → `version = "1.0.0"`
+- `package.json` → `"version": "1.0.0"`
+- `git_quick/__init__.py` → `__version__ = "1.0.0"`
 - `Formula/git-quick.rb` → `url` line with version
 
 ### 2. Update CHANGELOG.md
 
 ```markdown
-## [0.1.0] - 2025-01-XX
+## [1.0.0] - 2025-01-XX
 
 ### Added
 
@@ -66,8 +66,8 @@ rm -rf dist/ build/ *.egg-info
 python -m build
 
 # Should create:
-# dist/git_quick-0.1.0-py3-none-any.whl
-# dist/git-quick-0.1.0.tar.gz
+# dist/git_quick-1.0.0-py3-none-any.whl
+# dist/git-quick-1.0.0.tar.gz
 ```
 
 ### 3. Test on TestPyPI (Recommended)
@@ -125,7 +125,7 @@ Edit `package.json`:
 ```json
 {
   "name": "git-quick-cli",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "repository": {
     "url": "https://github.com/vswaroop04/git-quick.git"
   }
@@ -138,10 +138,10 @@ Edit `package.json`:
 # Create tarball
 npm pack
 
-# Should create: git-quick-cli-0.1.0.tgz
+# Should create: git-quick-cli-1.0.0.tgz
 
 # Test installation
-npm install -g ./git-quick-cli-0.1.0.tgz
+npm install -g ./git-quick-cli-1.0.0.tgz
 
 # Test it works
 git-quick --version
@@ -198,15 +198,15 @@ cp git-quick.rb Formula/
 
 ```bash
 # Create release tarball
-git tag v0.1.0
-git push origin v0.1.0
+git tag v1.0.0
+git push origin v1.0.0
 
 # GitHub will create:
-# https://github.com/vswaroop04/git-quick/archive/refs/tags/v0.1.0.tar.gz
+# https://github.com/vswaroop04/git-quick/archive/refs/tags/v1.0.0.tar.gz
 
 # Download and get SHA256
-curl -L https://github.com/vswaroop04/git-quick/archive/refs/tags/v0.1.0.tar.gz -o git-quick-0.1.0.tar.gz
-shasum -a 256 git-quick-0.1.0.tar.gz
+curl -L https://github.com/vswaroop04/git-quick/archive/refs/tags/v1.0.0.tar.gz -o git-quick-1.0.0.tar.gz
+shasum -a 256 git-quick-1.0.0.tar.gz
 
 # Update Formula/git-quick.rb with SHA256
 ```
@@ -219,7 +219,7 @@ Edit `Formula/git-quick.rb`:
 class GitQuick < Formula
   desc "Lightning-fast Git workflows with AI-powered commit messages"
   homepage "https://github.com/vswaroop04/git-quick"
-  url "https://github.com/vswaroop04/git-quick/archive/refs/tags/v0.1.0.tar.gz"
+  url "https://github.com/vswaroop04/git-quick/archive/refs/tags/v1.0.0.tar.gz"
   sha256 "YOUR_ACTUAL_SHA256_HERE"
   license "MIT"
 end
@@ -246,7 +246,7 @@ brew test git-quick
 
 ```bash
 git add Formula/git-quick.rb
-git commit -m "Add git-quick formula v0.1.0"
+git commit -m "Add git-quick formula v1.0.0"
 git push origin main
 ```
 
@@ -313,14 +313,14 @@ npm run compile
 # Package
 vsce package
 
-# Creates: git-quick-vscode-0.1.0.vsix
+# Creates: git-quick-vscode-1.0.0.vsix
 ```
 
 ### 4. Test Extension
 
 ```bash
 # Install locally
-code --install-extension git-quick-vscode-0.1.0.vsix
+code --install-extension git-quick-vscode-1.0.0.vsix
 
 # Test in VS Code
 # - Restart VS Code
@@ -337,9 +337,9 @@ vsce login your-publisher-name
 vsce publish
 
 # Or publish with version bump
-vsce publish patch  # 0.1.0 -> 0.1.1
-vsce publish minor  # 0.1.0 -> 0.2.0
-vsce publish major  # 0.1.0 -> 1.0.0
+vsce publish patch  # 1.0.0 -> 0.1.1
+vsce publish minor  # 1.0.0 -> 0.2.0
+vsce publish major  # 1.0.0 -> 1.0.0
 ```
 
 ### 6. Verify
@@ -352,8 +352,8 @@ Visit: https://marketplace.visualstudio.com/items?itemName=your-publisher-name.g
 
 ```bash
 # Tag version
-git tag v0.1.0
-git push origin v0.1.0
+git tag v1.0.0
+git push origin v1.0.0
 
 # Create release on GitHub
 # https://github.com/vswaroop04/git-quick/releases/new
@@ -388,7 +388,7 @@ Post on:
 Example post:
 
 ```
-🚀 Launching Git Quick v0.1.0!
+🚀 Launching Git Quick v1.0.0!
 
 Lightning-fast Git workflows with AI-powered commit messages.
 
@@ -415,7 +415,7 @@ https://github.com/vswaroop04/git-quick
 
 ## Updating Versions
 
-### For Patch Release (0.1.0 → 0.1.1)
+### For Patch Release (1.0.0 → 0.1.1)
 
 ```bash
 # Update version in all files
@@ -436,7 +436,7 @@ git tag v0.1.1
 git push origin v0.1.1
 ```
 
-### For Minor Release (0.1.0 → 0.2.0)
+### For Minor Release (1.0.0 → 0.2.0)
 
 Same as patch, but:
 
@@ -444,7 +444,7 @@ Same as patch, but:
 npm version minor
 ```
 
-### For Major Release (0.1.0 → 1.0.0)
+### For Major Release (1.0.0 → 1.0.0)
 
 Same as patch, but:
 
@@ -473,7 +473,7 @@ publish-all: publish-pypi publish-npm
 
 release:
 	@echo "Creating release..."
-	@read -p "Version (e.g., 0.1.0): " version; \
+	@read -p "Version (e.g., 1.0.0): " version; \
 	git tag v$$version; \
 	git push origin v$$version; \
 	echo "Release v$$version created!"

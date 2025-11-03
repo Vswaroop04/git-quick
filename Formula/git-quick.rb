@@ -5,8 +5,8 @@ class GitQuick < Formula
 
   desc "Lightning-fast Git workflows with AI-powered commit messages"
   homepage "https://github.com/vswaroop04/git-quick"
-  url "https://github.com/vswaroop04/git-quick/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "YOUR_SHA256_HERE"  # Generate with: shasum -a 256 git-quick-0.1.0.tar.gz
+  url "https://github.com/vswaroop04/git-quick/archive/refs/tags/v1.0.0.tar.gz"
+  sha256 "YOUR_SHA256_HERE"  # Generate with: shasum -a 256 git-quick-1.0.0.tar.gz
   license "MIT"
   head "https://github.com/vswaroop04/git-quick.git", branch: "main"
 

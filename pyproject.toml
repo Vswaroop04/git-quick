@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "git-quick"
-version = "0.1.0"
+version = "1.0.0"
 description = "Lightning-fast Git workflows with AI-powered commit messages"
 authors = [
     {name = "Your Name", email = "your.email@example.com"}

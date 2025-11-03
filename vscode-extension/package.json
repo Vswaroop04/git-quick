@@ -2,7 +2,7 @@
   "name": "git-quick-vscode",
   "displayName": "Git Quick",
   "description": "Lightning-fast Git workflows with AI-powered commit messages",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "publisher": "your-publisher-name",
   "engines": {
     "vscode": "^1.80.0"
@@ -100,13 +100,20 @@
         },
         "gitQuick.emojiStyle": {
           "type": "string",
-          "enum": ["gitmoji", "none"],
+          "enum": [
+            "gitmoji",
+            "none"
+          ],
           "default": "gitmoji",
           "description": "Commit message emoji style"
         },
         "gitQuick.aiProvider": {
           "type": "string",
-          "enum": ["ollama", "openai", "anthropic"],
+          "enum": [
+            "ollama",
+            "openai",
+            "anthropic"
+          ],
           "default": "ollama",
           "description": "AI provider for commit message generation"
         },
