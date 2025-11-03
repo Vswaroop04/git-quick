@@ -34,13 +34,14 @@
     "node": ">=14.0.0"
   },
   "dependencies": {},
-  "peerDependencies": {
-    "python3": ">=3.8"
-  },
   "os": [
     "darwin",
     "linux",
     "win32"
   ],
-  "preferGlobal": true
+  "preferGlobal": true,
+  "cpu": [
+    "x64",
+    "arm64"
+  ]
 }

@@ -45,17 +45,31 @@ function installPythonPackage(pythonCmd) {
   console.log('\nInstalling git-quick Python package...');
 
   try {
-    // Try to install from PyPI
+    // First try to install from PyPI
     execSync(`${pythonCmd} -m pip install git-quick`, {
       stdio: 'inherit',
       encoding: 'utf8'
     });
-    console.log('✓ Python package installed');
+    console.log('✓ Python package installed from PyPI');
     return true;
   } catch (e) {
-    console.warn('⚠ Could not install Python package automatically');
-    console.warn('  Please run manually: pip install git-quick');
-    return false;
+    // If PyPI fails, try installing from the npm package directory
+    try {
+      const path = require('path');
+      const packageDir = path.join(__dirname, '..');
+      console.log('⚠ PyPI not available, installing from local package...');
+      execSync(`${pythonCmd} -m pip install "${packageDir}"`, {
+        stdio: 'inherit',
+        encoding: 'utf8'
+      });
+      console.log('✓ Python package installed from local directory');
+      return true;
+    } catch (e2) {
+      console.warn('⚠ Could not install Python package automatically');
+      console.warn('  Please run manually: pip install git-quick');
+      console.warn('  Or from this directory: pip install .');
+      return false;
+    }
   }
 }
 
