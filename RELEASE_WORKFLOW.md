@@ -5,15 +5,18 @@
 ### Setup Once
 
 1. **Get API Tokens**:
+
    - PyPI: https://pypi.org/manage/account/token/
    - npm: https://www.npmjs.com/settings/YOUR_USERNAME/tokens
 
 2. **Add to GitHub Secrets**:
+
    - Go to: `https://github.com/YOUR_USERNAME/git-quick/settings/secrets/actions`
    - Add `PYPI_API_TOKEN` (from PyPI)
    - Add `NPM_TOKEN` (from npm)
 
 3. **First Manual Release**:
+
    ```bash
    # Publish to PyPI (first time)
    python -m build
@@ -39,13 +42,14 @@ git commit -m "feat: add setup wizard"
 git push origin main
 # ✨ Auto-publishes to npm and PyPI!
 
-# Breaking changes (major bump: 0.1.0 → 1.0.0)
+# Breaking changes (major bump: 0.1.0 → 1.1.0)
 git commit -m "feat!: redesign CLI interface"
 git push origin main
 # ✨ Auto-publishes to npm and PyPI!
 ```
 
 **That's it!** The GitHub Action handles:
+
 - ✅ Version bumping
 - ✅ Git tagging
 - ✅ PyPI publishing
@@ -63,7 +67,7 @@ Use the helper script:
 # Minor bump (0.1.0 → 0.2.0)
 ./scripts/bump-version.sh minor
 
-# Major bump (0.1.0 → 1.0.0)
+# Major bump (0.1.0 → 1.1.0)
 ./scripts/bump-version.sh major
 
 # Custom version
@@ -78,11 +82,11 @@ git push origin main --tags
 
 The workflow automatically determines the bump type from your commits:
 
-| Commit Message | Bump Type | Example |
-|----------------|-----------|---------|
-| `fix:`, `chore:`, `docs:` | Patch | 0.1.0 → 0.1.1 |
-| `feat:` | Minor | 0.1.0 → 0.2.0 |
-| `feat!:` or `BREAKING CHANGE:` | Major | 0.1.0 → 1.0.0 |
+| Commit Message                 | Bump Type | Example       |
+| ------------------------------ | --------- | ------------- |
+| `fix:`, `chore:`, `docs:`      | Patch     | 0.1.0 → 0.1.1 |
+| `feat:`                        | Minor     | 0.1.0 → 0.2.0 |
+| `feat!:` or `BREAKING CHANGE:` | Major     | 0.1.0 → 1.1.0 |
 
 ## Skip CI
 
@@ -96,6 +100,7 @@ git push origin main
 ## Monitoring
 
 Watch the release progress:
+
 - Actions: `https://github.com/YOUR_USERNAME/git-quick/actions`
 - PyPI: `https://pypi.org/project/git-quick/`
 - npm: `https://www.npmjs.com/package/git-quick-cli`
@@ -104,15 +109,18 @@ Watch the release progress:
 ## Troubleshooting
 
 **Publish fails?**
+
 - Check workflow logs in Actions tab
 - Verify secrets are set correctly
 - Make sure first manual release is done
 
 **Wrong version bump?**
+
 - Use correct commit message format
 - Or use manual bump script
 
 **Need to rollback?**
+
 ```bash
 # Delete tag
 git tag -d v1.2.3

@@ -123,7 +123,7 @@ git-quick --init-config
 
 2. Or install from VSIX:
    ```bash
-   code --install-extension git-quick-vscode-1.0.0.vsix
+   code --install-extension git-quick-vscode-1.1.0.vsix
    ```
 
 ### Configuration

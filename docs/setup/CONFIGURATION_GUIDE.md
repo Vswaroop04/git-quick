@@ -20,6 +20,7 @@ GITQUICK_AUTO_PUSH=false gq
 ```
 
 **Available Environment Variables:**
+
 - `GITQUICK_AI_PROVIDER` - AI provider: `ollama`, `openai`, `anthropic`, `fallback`
 - `GITQUICK_AI_MODEL` - Model name: `llama3`, `gpt-4o-mini`, `claude-3-5-sonnet-20241022`
 - `GITQUICK_AUTO_PUSH` - Auto push after commit: `true`, `false`
@@ -50,7 +51,7 @@ ai_model = "llama3"             # Model to use
 conventional_commits = true     # Use conventional commit format
 
 [story]
-default_range = "last-release"  # Show commits since: last-release, HEAD~10, v1.0.0
+default_range = "last-release"  # Show commits since: last-release, HEAD~10, v1.1.0
 color_scheme = "dark"           # Color scheme: dark, light
 group_by = "date"               # Group by: date, author, type
 max_commits = 50                # Maximum commits to show
@@ -83,6 +84,7 @@ gq --setup
 ```
 
 This will guide you through:
+
 - Choosing AI provider
 - Installing Ollama (if selected)
 - Downloading models
@@ -94,11 +96,13 @@ This will guide you through:
 ### Switch from Ollama to OpenAI
 
 **Option 1: Edit config file**
+
 ```bash
 nano ~/.gitquick.toml
 ```
 
 Change:
+
 ```toml
 [quick]
 ai_provider = "openai"
@@ -109,6 +113,7 @@ openai_api_key = "sk-proj-your-key-here"
 ```
 
 **Option 2: Run setup wizard**
+
 ```bash
 gq --setup
 # Choose option 2 (OpenAI)
@@ -122,12 +127,14 @@ nano ~/.gitquick.toml
 ```
 
 Change:
+
 ```toml
 [quick]
 ai_model = "codellama"  # or "mistral", "llama3.2", etc.
 ```
 
 Or use environment variable:
+
 ```bash
 GITQUICK_AI_MODEL=codellama gq
 ```
@@ -140,12 +147,14 @@ nano ~/.gitquick.toml
 ```
 
 Change:
+
 ```toml
 [quick]
 auto_push = false
 ```
 
 Or use flag:
+
 ```bash
 gq --no-push
 ```
@@ -158,12 +167,14 @@ nano ~/.gitquick.toml
 ```
 
 Change:
+
 ```toml
 [quick]
 emoji_style = "none"
 ```
 
 Or use flag:
+
 ```bash
 gq --no-emoji
 ```
@@ -171,16 +182,19 @@ gq --no-emoji
 ### Use Fallback Mode (No AI)
 
 **Temporary:**
+
 ```bash
 gq --no-ai
 ```
 
 **Permanent:**
+
 ```bash
 nano ~/.gitquick.toml
 ```
 
 Change:
+
 ```toml
 [quick]
 ai_provider = "fallback"
@@ -241,6 +255,7 @@ nano ~/.gitquick.toml
 ```
 
 Change:
+
 ```toml
 [quick]
 ai_model = "mistral"
@@ -251,6 +266,7 @@ ai_model = "mistral"
 ### Add OpenAI API Key
 
 **Option 1: Setup wizard**
+
 ```bash
 gq --setup
 # Choose option 2 (OpenAI)
@@ -258,11 +274,13 @@ gq --setup
 ```
 
 **Option 2: Edit config**
+
 ```bash
 nano ~/.gitquick.toml
 ```
 
 Add:
+
 ```toml
 [quick]
 ai_provider = "openai"
@@ -275,6 +293,7 @@ openai_api_key = "sk-proj-your-key-here"
 ### Add Anthropic API Key
 
 **Option 1: Setup wizard**
+
 ```bash
 gq --setup
 # Choose option 3 (Anthropic)
@@ -282,11 +301,13 @@ gq --setup
 ```
 
 **Option 2: Edit config**
+
 ```bash
 nano ~/.gitquick.toml
 ```
 
 Add:
+
 ```toml
 [quick]
 ai_provider = "anthropic"
@@ -299,10 +320,12 @@ anthropic_api_key = "sk-ant-your-key-here"
 ### Security Best Practices
 
 1. **Never commit API keys to git**
+
    - Config file is in `~/.gitquick.toml` (outside your repos)
    - Add to `.gitignore` if you create project-specific configs
 
 2. **Use environment variables for CI/CD**
+
    ```bash
    export GITQUICK_AI_PROVIDER=fallback
    gq --no-ai -y
@@ -322,6 +345,7 @@ nano .gitquick.toml
 ```
 
 Example project config:
+
 ```toml
 [quick]
 auto_push = false  # Don't auto-push in this project
@@ -399,6 +423,7 @@ gq --no-ai -y
 ### Example 3: Different Settings for Work vs Personal
 
 **Work projects:**
+
 ```bash
 # ~/.gitquick-work.toml
 [quick]
@@ -408,6 +433,7 @@ conventional_commits = true
 ```
 
 **Personal projects:**
+
 ```bash
 # ~/.gitquick.toml
 [quick]
@@ -417,6 +443,7 @@ conventional_commits = true
 ```
 
 Use with:
+
 ```bash
 # Work
 GITQUICK_CONFIG=~/.gitquick-work.toml gq
@@ -435,12 +462,14 @@ gq
 ## Summary
 
 **Quick Start:**
+
 1. Run `gq --setup` for interactive configuration
 2. Or edit `~/.gitquick.toml` manually
 3. Use environment variables for temporary overrides
 4. Use command-line flags for one-off changes
 
 **Most Common:**
+
 - Change AI provider: `gq --setup`
 - Disable auto-push: `gq --no-push`
 - Disable AI: `gq --no-ai`

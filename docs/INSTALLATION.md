@@ -163,6 +163,7 @@ gq sync         # Sync branches
 ```
 
 Old commands still work for backward compatibility:
+
 ```bash
 git-quick       # Same as gq
 git-story       # Same as gq story
@@ -428,11 +429,11 @@ npm publish
 
 ```bash
 # Create tag
-git tag v1.0.0
-git push origin v1.0.0
+git tag v1.1.0
+git push origin v1.1.0
 
 # Update Formula/git-quick.rb with new SHA256
-shasum -a 256 git-quick-1.0.0.tar.gz
+shasum -a 256 git-quick-1.1.0.tar.gz
 
 # Submit to homebrew-core or host tap
 ```

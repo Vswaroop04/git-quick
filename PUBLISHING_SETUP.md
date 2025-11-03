@@ -17,11 +17,11 @@ The GitHub Actions workflow (`.github/workflows/publish.yml`) automatically:
 
 The workflow analyzes your commit messages to determine the version bump:
 
-| Commit Type | Version Bump | Example |
-|-------------|--------------|---------|
-| `BREAKING CHANGE:` or `feat!:` | **Major** (1.0.0 → 2.0.0) | Breaking API changes |
-| `feat:` or `feat(scope):` | **Minor** (1.0.0 → 1.1.0) | New features |
-| `fix:`, `chore:`, `docs:`, etc. | **Patch** (1.0.0 → 1.0.1) | Bug fixes, updates |
+| Commit Type                     | Version Bump              | Example              |
+| ------------------------------- | ------------------------- | -------------------- |
+| `BREAKING CHANGE:` or `feat!:`  | **Major** (1.1.0 → 2.0.0) | Breaking API changes |
+| `feat:` or `feat(scope):`       | **Minor** (1.1.0 → 1.1.0) | New features         |
+| `fix:`, `chore:`, `docs:`, etc. | **Patch** (1.1.0 → 1.0.1) | Bug fixes, updates   |
 
 ### Examples
 
@@ -32,7 +32,7 @@ git commit -m "fix: resolve null pointer in config"
 # Minor bump (0.1.0 → 0.2.0)
 git commit -m "feat: add setup wizard"
 
-# Major bump (0.1.0 → 1.0.0)
+# Major bump (0.1.0 → 1.1.0)
 git commit -m "feat!: redesign CLI interface"
 # or
 git commit -m "feat: redesign CLI interface
@@ -47,6 +47,7 @@ BREAKING CHANGE: CLI flags have changed"
 1. **Create PyPI account**: https://pypi.org/account/register/
 2. **Enable 2FA**: https://pypi.org/manage/account/
 3. **Generate API token**:
+
    - Go to: https://pypi.org/manage/account/token/
    - Token name: `github-actions-git-quick`
    - Scope: "Entire account" (or project-specific after first release)
@@ -63,6 +64,7 @@ BREAKING CHANGE: CLI flags have changed"
 1. **Create npm account**: https://www.npmjs.com/signup
 2. **Enable 2FA** (Auth-only recommended): https://www.npmjs.com/settings/YOUR_USERNAME/tfa
 3. **Generate access token**:
+
    - Go to: https://www.npmjs.com/settings/YOUR_USERNAME/tokens
    - Click "Generate New Token"
    - Type: "Automation" (for CI/CD)
@@ -183,6 +185,7 @@ The `[skip ci]` flag tells GitHub Actions to skip the workflow.
 **Problem**: Version already exists on PyPI.
 
 **Solution**:
+
 1. Delete the git tag: `git tag -d v1.2.3 && git push origin :refs/tags/v1.2.3`
 2. Manually bump version in `pyproject.toml` and `package.json`
 3. Commit and push again
@@ -192,6 +195,7 @@ The `[skip ci]` flag tells GitHub Actions to skip the workflow.
 **Problem**: npm token is invalid or has wrong permissions.
 
 **Solution**:
+
 1. Generate a new "Automation" token on npmjs.com
 2. Update the `NPM_TOKEN` secret in GitHub
 3. Re-run the workflow
@@ -201,8 +205,9 @@ The `[skip ci]` flag tells GitHub Actions to skip the workflow.
 **Problem**: Push didn't trigger the workflow.
 
 **Solution**:
+
 1. Check that you pushed to `main` branch
-2. Check that you didn't push only ignored files (README.md, docs/*)
+2. Check that you didn't push only ignored files (README.md, docs/\*)
 3. Check workflow permissions in repository settings
 
 ### Version bump is wrong
@@ -210,6 +215,7 @@ The `[skip ci]` flag tells GitHub Actions to skip the workflow.
 **Problem**: Workflow bumped minor instead of patch (or vice versa).
 
 **Solution**: Use correct conventional commit format:
+
 - `feat:` for minor bumps
 - `fix:`, `chore:`, `docs:` for patch bumps
 - `feat!:` or `BREAKING CHANGE:` for major bumps
@@ -236,6 +242,7 @@ git push origin main --tags
 ```
 
 Then manually publish:
+
 ```bash
 python -m build
 python -m twine upload dist/*
@@ -266,12 +273,12 @@ To publish a pre-release (beta, alpha, rc):
 
 ```bash
 # Set version manually
-echo "version = \"1.0.0-beta.1\"" # in pyproject.toml
-echo "\"version\": \"1.0.0-beta.1\"" # in package.json
+echo "version = \"1.1.0-beta.1\"" # in pyproject.toml
+echo "\"version\": \"1.1.0-beta.1\"" # in package.json
 
 # Commit with [skip ci] to avoid auto-publish
-git commit -m "chore: pre-release v1.0.0-beta.1 [skip ci]"
-git tag -a "v1.0.0-beta.1" -m "Pre-release v1.0.0-beta.1"
+git commit -m "chore: pre-release v1.1.0-beta.1 [skip ci]"
+git tag -a "v1.1.0-beta.1" -m "Pre-release v1.1.0-beta.1"
 git push origin main --tags
 
 # Manually publish
@@ -281,8 +288,9 @@ npm publish --tag beta
 ```
 
 Users can then install:
+
 ```bash
-pip install git-quick==1.0.0b1
+pip install git-quick==1.1.0b1
 npm install -g git-quick-cli@beta
 ```
 

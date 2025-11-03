@@ -230,7 +230,7 @@ git-quick/
 - [ ] Update `CHANGELOG.md`
 - [ ] Run tests: `make test`
 - [ ] Build documentation
-- [ ] Create git tag: `git tag v1.0.0`
+- [ ] Create git tag: `git tag v1.1.0`
 
 ### Publish to PyPI
 
@@ -249,10 +249,10 @@ npm publish
 
 ```bash
 # 1. Push tag to GitHub
-git push origin v1.0.0
+git push origin v1.1.0
 
 # 2. Get SHA256 of release tarball
-curl -L https://github.com/user/git-quick/archive/refs/tags/v1.0.0.tar.gz -o release.tar.gz
+curl -L https://github.com/user/git-quick/archive/refs/tags/v1.1.0.tar.gz -o release.tar.gz
 shasum -a 256 release.tar.gz
 
 # 3. Update Formula/git-quick.rb with SHA256
@@ -261,7 +261,7 @@ shasum -a 256 release.tar.gz
 cd homebrew-git-quick
 cp ../git-quick/Formula/git-quick.rb Formula/
 git add Formula/git-quick.rb
-git commit -m "Update to v1.0.0"
+git commit -m "Update to v1.1.0"
 git push
 ```
 
@@ -297,20 +297,20 @@ $ brew install git-quick
 ✓ Commands linked to /usr/local/bin
 
 $ git-quick --version
-git-quick 1.0.0
+git-quick 1.1.0
 ```
 
 ### npm User
 
 ```bash
 $ npm install -g git-quick-cli
-+ git-quick-cli@1.0.0
++ git-quick-cli@1.1.0
 ✓ Node.js package installed
 ℹ Installing Python dependencies...
 ✓ git-quick ready
 
 $ git-quick --version
-git-quick 1.0.0
+git-quick 1.1.0
 ```
 
 ### pip User
@@ -319,10 +319,10 @@ git-quick 1.0.0
 $ pip install git-quick
 Collecting git-quick...
 Installing collected packages: click, rich, gitpython, git-quick
-Successfully installed git-quick-1.0.0
+Successfully installed git-quick-1.1.0
 
 $ git-quick --version
-git-quick 1.0.0
+git-quick 1.1.0
 ```
 
 ---

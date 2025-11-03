@@ -75,7 +75,7 @@ Show commit history in a beautiful format.
 gq story
 
 # Show commits since specific tag
-gq story --since v1.0.0
+gq story --since v1.1.0
 
 # Group by type (feat, fix, etc.)
 gq story --group-by type
@@ -219,18 +219,22 @@ Restoring stashed changes...
 Access via Command Palette (Cmd/Ctrl + Shift + P):
 
 1. **Git Quick: Quick Commit & Push**
+
    - Stage, commit, and push in one click
    - Keyboard: `Ctrl+Shift+G Q`
 
 2. **Git Quick: Generate AI Commit Message**
+
    - Generate message for staged changes
    - Inserts into commit input box
    - Keyboard: `Ctrl+Shift+G M`
 
 3. **Git Quick: Show Commit Story**
+
    - Opens commit history in new tab
 
 4. **Git Quick: Show Time Report**
+
    - Shows time tracking report
 
 5. **Git Quick: Sync All Branches**
@@ -261,6 +265,7 @@ feat({{scope}}): {{description}}
 ```
 
 Use with:
+
 ```bash
 gq --template feature
 ```
@@ -302,7 +307,7 @@ name: Auto Commit
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Daily
+    - cron: '0 0 * * *' # Daily
 
 jobs:
   commit:
@@ -359,6 +364,7 @@ auto_push = false     # Manual push
 ```
 
 Then use:
+
 ```bash
 git quick
 git story
