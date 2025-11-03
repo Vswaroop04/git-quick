@@ -62,16 +62,18 @@ git-quick time report --all
 git-quick sync
 ```
 
-## AI Setup (Optional)
+## AI Setup (Optional - git-quick works without it!)
 
-**Ollama (Recommended - Free):**
+**git-quick works immediately after install** with intelligent fallback messages based on file types.
+
+**Ollama (Optional - Free, Local AI):**
 ```bash
 curl -fsSL https://ollama.ai/install.sh | sh
-ollama pull llama3.2
-git-quick  # Works!
+ollama pull llama3
+git-quick  # Now uses AI!
 ```
 
-**OpenAI (Paid):**
+**OpenAI (Optional - Paid):**
 ```bash
 cat > ~/.gitquick.toml << 'EOF'
 [quick]
@@ -81,9 +83,9 @@ openai_api_key = "sk-proj-YOUR-KEY"
 EOF
 ```
 
-**No AI:**
+**Force fallback mode (skip AI):**
 ```bash
-git-quick --no-ai  # Uses fallback
+git-quick --no-ai
 ```
 
 ## Configuration File

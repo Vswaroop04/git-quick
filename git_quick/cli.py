@@ -12,6 +12,7 @@ from git_quick.ai_commit import AICommitGenerator
 from git_quick.commands.story import show_story
 from git_quick.commands.time_tracker import TimeTracker
 from git_quick.commands.sync import sync_all_branches
+from git_quick.setup_wizard import run_setup_wizard, prompt_setup_if_needed
 
 console = Console()
 
@@ -25,14 +26,23 @@ class DefaultGroup(click.Group):
 
     def parse_args(self, ctx, args):
         # If no args or only options (not subcommands), use default command
-        # But skip this if it's a global option like --version or --help
-        if not args or (args and args[0].startswith('-') and args[0] not in ['--version', '--help', '-h']):
+        # But skip this if it's a global option like --version, --help, or --setup
+        if not args or (args and args[0].startswith('-') and args[0] not in ['--version', '--help', '-h', '--setup']):
             args.insert(0, self.default_cmd_name or 'commit')
         return super().parse_args(ctx, args)
 
 
+def setup_callback(ctx, param, value):
+    """Callback to handle --setup flag."""
+    if value:
+        run_setup_wizard()
+        ctx.exit(0)
+
+
 @click.group(cls=DefaultGroup, default_command='commit')
 @click.version_option(version="0.1.0", prog_name="git-quick")
+@click.option('--setup', is_flag=True, is_eager=True, expose_value=False, 
+              callback=setup_callback, help='Run the setup wizard')
 def cli():
     """Lightning-fast Git workflows with AI-powered commit messages.
 
@@ -49,6 +59,7 @@ def cli():
       git-quick story              # Show commits
       git-quick time start         # Track time
       git-quick sync               # Sync branches
+      git-quick --setup            # Run setup wizard
     """
     pass
 
@@ -67,6 +78,9 @@ def commit_cmd(message, no_push, no_ai, emoji, dry_run, yes):
     Combines git add, commit, and push with smart defaults.
     """
     try:
+        # Run setup wizard on first use
+        prompt_setup_if_needed()
+        
         config = get_config()
         git = GitUtils()
 

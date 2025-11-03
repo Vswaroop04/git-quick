@@ -60,6 +60,7 @@ mypy git_quick
 
 ## Commit Messages
 
+Btw you can also use the same tool for commit msgs as well :>
 We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```

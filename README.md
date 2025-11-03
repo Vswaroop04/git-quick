@@ -17,6 +17,8 @@ npm install -g git-quick-cli
 pip install git-quick
 ```
 
+**First Run:** git-quick will automatically guide you through AI setup on first use!
+
 [See all installation options →](docs/INSTALLATION.md)
 
 ## Features
@@ -53,14 +55,30 @@ pip install git-quick
 
 ## Installation
 
-### npm (Cross-platform)
+### Quick Install (Works immediately with smart fallback)
+
 ```bash
+# npm (All platforms)
 npm install -g git-quick-cli
+
+# pip (Python)
+pip install git-quick
 ```
 
-### pip (Python)
+**Note:** git-quick works immediately after installation! It uses intelligent commit message generation based on your changes. For AI-powered messages, optionally install Ollama (see below).
+
+### Optional: AI-Powered Messages (Ollama)
+
+For enhanced AI commit messages, install Ollama (free, runs locally):
+
 ```bash
-pip install git-quick
+# macOS/Linux
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# Or visit: https://ollama.ai/download
+
+# Pull a model
+ollama pull llama3
 ```
 
 ### From Source
@@ -70,23 +88,52 @@ cd git-quick
 pip install -e .
 ```
 
-**See [Installation Guide](docs/INSTALLATION.md) for detailed instructions, including Windows setup.**
+**See [Installation Guide](docs/INSTALLATION.md) for detailed instructions.**
+
+## 📚 Documentation
+
+- **[Quick Start](QUICKSTART.md)** - Get started in 5 minutes
+- **[Installation](docs/INSTALLATION.md)** - Platform-specific installation
+- **[AI Setup](docs/setup/AI_SETUP.md)** - Configure AI providers
+- **[Configuration](docs/setup/CONFIGURATION_GUIDE.md)** - All configuration options
+- **[Usage Guide](docs/USAGE.md)** - Complete command reference
+- **[Contributing](CONTRIBUTING.md)** - How to contribute
+
+**[📖 View All Documentation →](docs/README.md)**
 
 ## Quick Start
 
 ```bash
-# Quick commit and push with AI message
+# First time: Run setup wizard
+git-quick --setup
+
+# Or just run git-quick and it will prompt you automatically
 git-quick
 
-# See your commit story
-git-story
-
-# Track your time
-git-time report
-
-# Sync all branches
-git-sync-all
+# Other commands
+git-story              # See your commit story
+git-time report        # Track your time
+git-sync-all           # Sync all branches
 ```
+
+### First-Time Setup
+
+On your first run, git-quick will ask you to choose an AI provider:
+
+1. **Ollama** (Recommended) - Free, local, private AI
+   - Automatically installs and downloads model
+   - No API keys needed
+
+2. **OpenAI** - Best quality, requires API key
+   - Enter your API key when prompted
+
+3. **Anthropic (Claude)** - Great for technical commits
+   - Enter your API key when prompted
+
+4. **No AI** - Smart fallback mode
+   - Works immediately, no setup needed
+
+You can always reconfigure later with `git-quick --setup`
 
 ## Configuration
 

@@ -35,6 +35,9 @@ DEFAULT_CONFIG = {
         "anthropic_api_key": "",
         "ollama_host": "http://localhost:11434",
     },
+    "setup": {
+        "completed": False,
+    },
 }
 
 # Gitmoji mappings
@@ -83,7 +86,13 @@ class Config:
                 self._config[section] = values
 
     def get(self, section: str, key: str, default: Any = None) -> Any:
-        """Get configuration value."""
+        """Get configuration value with environment variable override support."""
+        # Check for environment variable override
+        env_key = f"GITQUICK_{key.upper()}"
+        env_value = os.getenv(env_key)
+        if env_value is not None:
+            return env_value
+        
         return self._config.get(section, {}).get(key, default)
 
     def set(self, section: str, key: str, value: Any) -> None:
