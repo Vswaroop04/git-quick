@@ -150,7 +150,7 @@ Arguments:
 Examples:
   ./scripts/bump-version.sh patch     # 0.1.0 → 0.1.1
   ./scripts/bump-version.sh minor     # 0.1.0 → 0.2.0
-  ./scripts/bump-version.sh major     # 0.1.0 → 1.1.0
+  ./scripts/bump-version.sh major     # 0.1.0 → 1.1.1
   ./scripts/bump-version.sh 2.0.0     # Set explicit version
 
 EOF

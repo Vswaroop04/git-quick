@@ -19,9 +19,9 @@ The workflow analyzes your commit messages to determine the version bump:
 
 | Commit Type                     | Version Bump              | Example              |
 | ------------------------------- | ------------------------- | -------------------- |
-| `BREAKING CHANGE:` or `feat!:`  | **Major** (1.1.0 → 2.0.0) | Breaking API changes |
-| `feat:` or `feat(scope):`       | **Minor** (1.1.0 → 1.1.0) | New features         |
-| `fix:`, `chore:`, `docs:`, etc. | **Patch** (1.1.0 → 1.0.1) | Bug fixes, updates   |
+| `BREAKING CHANGE:` or `feat!:`  | **Major** (1.1.1 → 2.0.0) | Breaking API changes |
+| `feat:` or `feat(scope):`       | **Minor** (1.1.1 → 1.1.1) | New features         |
+| `fix:`, `chore:`, `docs:`, etc. | **Patch** (1.1.1 → 1.0.1) | Bug fixes, updates   |
 
 ### Examples
 
@@ -32,7 +32,7 @@ git commit -m "fix: resolve null pointer in config"
 # Minor bump (0.1.0 → 0.2.0)
 git commit -m "feat: add setup wizard"
 
-# Major bump (0.1.0 → 1.1.0)
+# Major bump (0.1.0 → 1.1.1)
 git commit -m "feat!: redesign CLI interface"
 # or
 git commit -m "feat: redesign CLI interface
@@ -273,12 +273,12 @@ To publish a pre-release (beta, alpha, rc):
 
 ```bash
 # Set version manually
-echo "version = \"1.1.0-beta.1\"" # in pyproject.toml
-echo "\"version\": \"1.1.0-beta.1\"" # in package.json
+echo "version = \"1.1.1-beta.1\"" # in pyproject.toml
+echo "\"version\": \"1.1.1-beta.1\"" # in package.json
 
 # Commit with [skip ci] to avoid auto-publish
-git commit -m "chore: pre-release v1.1.0-beta.1 [skip ci]"
-git tag -a "v1.1.0-beta.1" -m "Pre-release v1.1.0-beta.1"
+git commit -m "chore: pre-release v1.1.1-beta.1 [skip ci]"
+git tag -a "v1.1.1-beta.1" -m "Pre-release v1.1.1-beta.1"
 git push origin main --tags
 
 # Manually publish
@@ -290,7 +290,7 @@ npm publish --tag beta
 Users can then install:
 
 ```bash
-pip install git-quick==1.1.0b1
+pip install git-quick==1.1.1b1
 npm install -g git-quick-cli@beta
 ```
 

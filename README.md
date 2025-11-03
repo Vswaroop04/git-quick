@@ -1,7 +1,7 @@
 # Git Quick - Lightning-fast Git workflows
 
-[![PyPI](https://img.shields.io/badge/pypi-v1.1.0-blue)](https://pypi.org/project/git-quick/)
-[![npm](https://img.shields.io/badge/npm-v1.1.0-red)](https://www.npmjs.com/package/git-quick-cli)
+[![PyPI](https://img.shields.io/badge/pypi-v1.1.1-blue)](https://pypi.org/project/git-quick/)
+[![npm](https://img.shields.io/badge/npm-v1.1.1-red)](https://www.npmjs.com/package/git-quick-cli)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8+-blue)](https://www.python.org/)
 

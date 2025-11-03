@@ -1,9 +1,10 @@
 {
   "name": "git-quick-cli",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Lightning-fast Git workflows with AI-powered commit messages",
   "main": "index.js",
   "bin": {
+    "gq": "./bin/git-quick.js",
     "git-quick": "./bin/git-quick.js"
   },
   "scripts": {

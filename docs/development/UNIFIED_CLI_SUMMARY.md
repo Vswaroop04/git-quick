@@ -171,7 +171,7 @@ gq sync         # Subcommand
 
 ```bash
 $ pip install git-quick
-Successfully installed git-quick-1.1.0
+Successfully installed git-quick-1.1.1
 
 $ which git-quick
 /usr/local/bin/git-quick
@@ -194,7 +194,7 @@ $ gq story
 
 ```bash
 $ npm install -g git-quick-cli
-+ git-quick-cli@1.1.0
++ git-quick-cli@1.1.1
 
 $ which git-quick
 /usr/local/bin/git-quick

@@ -75,7 +75,7 @@ Show commit history in a beautiful format.
 gq story
 
 # Show commits since specific tag
-gq story --since v1.1.0
+gq story --since v1.1.1
 
 # Group by type (feat, fix, etc.)
 gq story --group-by type

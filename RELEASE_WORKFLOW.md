@@ -42,7 +42,7 @@ git commit -m "feat: add setup wizard"
 git push origin main
 # ✨ Auto-publishes to npm and PyPI!
 
-# Breaking changes (major bump: 0.1.0 → 1.1.0)
+# Breaking changes (major bump: 0.1.0 → 1.1.1)
 git commit -m "feat!: redesign CLI interface"
 git push origin main
 # ✨ Auto-publishes to npm and PyPI!
@@ -67,7 +67,7 @@ Use the helper script:
 # Minor bump (0.1.0 → 0.2.0)
 ./scripts/bump-version.sh minor
 
-# Major bump (0.1.0 → 1.1.0)
+# Major bump (0.1.0 → 1.1.1)
 ./scripts/bump-version.sh major
 
 # Custom version
@@ -86,7 +86,7 @@ The workflow automatically determines the bump type from your commits:
 | ------------------------------ | --------- | ------------- |
 | `fix:`, `chore:`, `docs:`      | Patch     | 0.1.0 → 0.1.1 |
 | `feat:`                        | Minor     | 0.1.0 → 0.2.0 |
-| `feat!:` or `BREAKING CHANGE:` | Major     | 0.1.0 → 1.1.0 |
+| `feat!:` or `BREAKING CHANGE:` | Major     | 0.1.0 → 1.1.1 |
 
 ## Skip CI
 

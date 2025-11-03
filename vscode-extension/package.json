@@ -2,7 +2,7 @@
   "name": "git-quick-vscode",
   "displayName": "Git Quick",
   "description": "Lightning-fast Git workflows with AI-powered commit messages",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "publisher": "your-publisher-name",
   "engines": {
     "vscode": "^1.80.0"

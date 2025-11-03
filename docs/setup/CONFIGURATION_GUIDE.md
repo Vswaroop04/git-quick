@@ -51,7 +51,7 @@ ai_model = "llama3"             # Model to use
 conventional_commits = true     # Use conventional commit format
 
 [story]
-default_range = "last-release"  # Show commits since: last-release, HEAD~10, v1.1.0
+default_range = "last-release"  # Show commits since: last-release, HEAD~10, v1.1.1
 color_scheme = "dark"           # Color scheme: dark, light
 group_by = "date"               # Group by: date, author, type
 max_commits = 50                # Maximum commits to show
