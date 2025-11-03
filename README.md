@@ -2,7 +2,6 @@
 
 [![PyPI](https://img.shields.io/badge/pypi-v0.1.0-blue)](https://pypi.org/project/git-quick/)
 [![npm](https://img.shields.io/badge/npm-v0.1.0-red)](https://www.npmjs.com/package/git-quick-cli)
-[![Homebrew](https://img.shields.io/badge/homebrew-available-orange)](https://github.com/yourusername/homebrew-git-quick)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8+-blue)](https://www.python.org/)
 
@@ -11,10 +10,6 @@ A modern CLI tool and VS Code extension that speeds up repetitive Git commands w
 ## ⚡ Quick Install
 
 ```bash
-# Homebrew (macOS/Linux)
-brew tap yourusername/git-quick
-brew install git-quick
-
 # npm (All platforms)
 npm install -g git-quick-cli
 
@@ -49,7 +44,7 @@ pip install git-quick
   - Fast-forward all branches
   - Conflict detection and reporting
 
-### VS Code Extension
+### VS Code Extension (In Progress)
 
 - Format commit messages with templates
 - AI commit message suggestions in editor
@@ -57,12 +52,6 @@ pip install git-quick
 - Status bar integration
 
 ## Installation
-
-### Homebrew (macOS/Linux)
-```bash
-brew tap yourusername/git-quick
-brew install git-quick
-```
 
 ### npm (Cross-platform)
 ```bash
