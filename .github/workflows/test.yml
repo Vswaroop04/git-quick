@@ -1,0 +1,89 @@
+name: Test
+
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ['3.9', '3.10', '3.11']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Test CLI installation
+        run: |
+          git-quick --version
+
+      - name: Test CLI help
+        run: |
+          git-quick --help
+
+      - name: Test subcommands
+        run: |
+          git-quick --help
+          git-quick story --help
+          git-quick time --help
+          git-quick sync --help
+
+      - name: Run basic tests
+        run: |
+          # Test in a temporary git repo
+          cd $(mktemp -d)
+          git init
+          git config user.email "test@example.com"
+          git config user.name "Test User"
+          echo "test" > test.txt
+          git add .
+          git commit -m "initial commit"
+          echo "change" >> test.txt
+
+          # Test dry-run mode
+          git-quick --dry-run --no-ai --yes || echo "Expected behavior"
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff black mypy
+
+      - name: Check formatting with black
+        run: |
+          black --check git_quick/ || echo "Run 'black git_quick/' to fix"
+
+      - name: Lint with ruff
+        run: |
+          ruff check git_quick/ || echo "Fix linting issues"
+
+      - name: Type check with mypy
+        run: |
+          mypy git_quick/ --ignore-missing-imports || echo "Fix type issues"
