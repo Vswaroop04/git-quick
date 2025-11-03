@@ -40,6 +40,10 @@ git-quick --no-ai
 # Dry run (see what would happen)
 git-quick --dry-run
 
+# Skip confirmation prompts (non-interactive)
+git-quick --yes
+git-quick -y
+
 # Show commit history
 git-quick story
 

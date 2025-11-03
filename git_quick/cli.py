@@ -16,7 +16,22 @@ from git_quick.commands.sync import sync_all_branches
 console = Console()
 
 
-@click.group()
+class DefaultGroup(click.Group):
+    """A Click group that uses a default command when no subcommand is given."""
+
+    def __init__(self, *args, **kwargs):
+        self.default_cmd_name = kwargs.pop('default_command', None)
+        super().__init__(*args, **kwargs)
+
+    def parse_args(self, ctx, args):
+        # If no args or only options (not subcommands), use default command
+        # But skip this if it's a global option like --version or --help
+        if not args or (args and args[0].startswith('-') and args[0] not in ['--version', '--help', '-h']):
+            args.insert(0, self.default_cmd_name or 'commit')
+        return super().parse_args(ctx, args)
+
+
+@click.group(cls=DefaultGroup, default_command='commit')
 @click.version_option(version="0.1.0", prog_name="git-quick")
 def cli():
     """Lightning-fast Git workflows with AI-powered commit messages.
@@ -44,7 +59,8 @@ def cli():
 @click.option("--no-ai", is_flag=True, help="Use fallback message generation")
 @click.option("--emoji/--no-emoji", default=True, help="Add emoji to commit message")
 @click.option("--dry-run", is_flag=True, help="Show what would be done without doing it")
-def commit_cmd(message, no_push, no_ai, emoji, dry_run):
+@click.option("--yes", "-y", is_flag=True, help="Skip confirmation prompts")
+def commit_cmd(message, no_push, no_ai, emoji, dry_run, yes):
     """Quick commit and push with AI-generated message.
 
     This is the default command when you run 'git-quick' without subcommands.
@@ -95,9 +111,12 @@ def commit_cmd(message, no_push, no_ai, emoji, dry_run):
                 Panel(commit_msg, title="[bold]Generated Message[/bold]", border_style="green")
             )
 
-            # Ask for confirmation
-            if not Confirm.ask("\nUse this message?", default=True):
-                commit_msg = Prompt.ask("Enter commit message")
+            # Ask for confirmation (only if interactive)
+            if not yes and sys.stdin.isatty():
+                if not Confirm.ask("\nUse this message?", default=True):
+                    commit_msg = Prompt.ask("Enter commit message")
+            elif not yes:
+                console.print("[yellow]Non-interactive mode: using generated message[/yellow]")
 
         # Commit
         console.print(f"\n[bold]💾 Committing...[/bold]")
@@ -134,16 +153,6 @@ def commit_cmd(message, no_push, no_ai, emoji, dry_run):
     except Exception as e:
         console.print(f"[red]Unexpected error:[/red] {e}")
         sys.exit(1)
-
-
-# Make commit the default command when no subcommand is given
-@cli.result_callback()
-@click.pass_context
-def default_command(ctx, result, **kwargs):
-    """Execute commit as default if no subcommand given."""
-    # If no subcommand was invoked, run commit
-    if ctx.invoked_subcommand is None:
-        ctx.invoke(commit_cmd)
 
 
 @cli.command()
