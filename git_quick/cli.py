@@ -40,7 +40,7 @@ def setup_callback(ctx, param, value):
 
 
 @click.group(cls=DefaultGroup, default_command='commit')
-@click.version_option(version="1.2.0", prog_name="gq")
+@click.version_option(version="1.3.0", prog_name="gq")
 @click.option('--setup', is_flag=True, is_eager=True, expose_value=False,
               callback=setup_callback, help='Run the setup wizard')
 def cli():
