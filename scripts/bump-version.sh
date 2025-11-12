@@ -13,7 +13,8 @@ NC='\033[0m' # No Color
 
 # Get current version from pyproject.toml
 get_current_version() {
-    python3 -c "import tomllib; f = open('pyproject.toml', 'rb'); data = tomllib.load(f); print(data['project']['version'])"
+    # Use grep and sed to extract version without Python dependencies
+    grep '^version = ' pyproject.toml | sed 's/version = "\(.*\)"/\1/'
 }
 
 # Calculate new version
