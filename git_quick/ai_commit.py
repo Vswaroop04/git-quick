@@ -1,6 +1,8 @@
 """AI-powered commit message generation."""
 
 import re
+import subprocess
+import time
 from typing import Optional, Tuple
 import requests
 from git_quick.config import get_config, GITMOJI_MAP
@@ -55,12 +57,64 @@ Output ONLY the commit message (no explanations, no quotes, no preamble):"""
 
         return prompt
 
+    def _check_ollama_running(self, host: str) -> bool:
+        """Check if Ollama service is running."""
+        try:
+            response = requests.get(f"{host}/api/tags", timeout=2)
+            return response.status_code == 200
+        except Exception:
+            return False
+
+    def _start_ollama(self) -> bool:
+        """Attempt to start Ollama service."""
+        try:
+            # Check if ollama command exists
+            subprocess.run(
+                ["ollama", "--version"],
+                capture_output=True,
+                timeout=5,
+                check=True
+            )
+
+            print("Starting Ollama service...")
+            # Start ollama serve in background
+            subprocess.Popen(
+                ["ollama", "serve"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                start_new_session=True
+            )
+
+            # Wait for service to be ready (max 10 seconds)
+            host = self.config.get("ai", "ollama_host", "http://localhost:11434")
+            for _ in range(20):  # 20 attempts * 0.5s = 10 seconds
+                time.sleep(0.5)
+                if self._check_ollama_running(host):
+                    print("✓ Ollama service started successfully")
+                    return True
+
+            print("Warning: Ollama service did not start in time")
+            return False
+
+        except (FileNotFoundError, subprocess.TimeoutExpired, subprocess.CalledProcessError):
+            print("Warning: Ollama is not installed. Install it from https://ollama.ai")
+            return False
+        except Exception as e:
+            print(f"Warning: Could not start Ollama: {e}")
+            return False
+
     def _generate_ollama(self, diff: str, files: list[str]) -> str:
         """Generate using Ollama."""
-        try:
-            host = self.config.get("ai", "ollama_host", "http://localhost:11434")
-            model = self.config.ai_model
+        host = self.config.get("ai", "ollama_host", "http://localhost:11434")
+        model = self.config.ai_model
 
+        # Check if Ollama is running, and start it if not
+        if not self._check_ollama_running(host):
+            if not self._start_ollama():
+                print("Falling back to basic commit message generation")
+                return self._generate_fallback(diff, files)
+
+        try:
             prompt = self._create_prompt(diff, files)
 
             response = requests.post(
@@ -73,6 +127,15 @@ Output ONLY the commit message (no explanations, no quotes, no preamble):"""
             message = response.json()["response"].strip()
             return self._clean_message(message)
 
+        except requests.exceptions.ConnectionError as e:
+            print(f"Warning: Could not connect to Ollama at {host}")
+            print("Please ensure Ollama is installed and the model is pulled:")
+            print(f"  ollama pull {model}")
+            return self._generate_fallback(diff, files)
+        except requests.exceptions.Timeout:
+            print(f"Warning: Ollama request timed out (model may not be downloaded)")
+            print(f"Try running: ollama pull {model}")
+            return self._generate_fallback(diff, files)
         except Exception as e:
             print(f"Warning: Ollama generation failed: {e}")
             return self._generate_fallback(diff, files)
@@ -84,6 +147,8 @@ Output ONLY the commit message (no explanations, no quotes, no preamble):"""
 
             api_key = self.config.get("ai", "openai_api_key")
             if not api_key:
+                print("Warning: OpenAI API key not configured")
+                print("Set it with: git-quick config --set ai.openai_api_key=<your-key>")
                 return self._generate_fallback(diff, files)
 
             client = openai.OpenAI(api_key=api_key)
@@ -96,8 +161,20 @@ Output ONLY the commit message (no explanations, no quotes, no preamble):"""
             message = response.choices[0].message.content.strip()
             return self._clean_message(message)
 
+        except ImportError:
+            print("Warning: OpenAI library not installed")
+            print("Install it with: pip install openai")
+            return self._generate_fallback(diff, files)
         except Exception as e:
-            print(f"Warning: OpenAI generation failed: {e}")
+            error_msg = str(e)
+            if "api_key" in error_msg.lower() or "authentication" in error_msg.lower():
+                print("Warning: OpenAI authentication failed - check your API key")
+            elif "rate_limit" in error_msg.lower():
+                print("Warning: OpenAI rate limit exceeded - try again later")
+            elif "quota" in error_msg.lower():
+                print("Warning: OpenAI quota exceeded - check your billing")
+            else:
+                print(f"Warning: OpenAI generation failed: {e}")
             return self._generate_fallback(diff, files)
 
     def _generate_anthropic(self, diff: str, files: list[str]) -> str:
@@ -107,6 +184,8 @@ Output ONLY the commit message (no explanations, no quotes, no preamble):"""
 
             api_key = self.config.get("ai", "anthropic_api_key")
             if not api_key:
+                print("Warning: Anthropic API key not configured")
+                print("Set it with: git-quick config --set ai.anthropic_api_key=<your-key>")
                 return self._generate_fallback(diff, files)
 
             client = anthropic.Anthropic(api_key=api_key)
@@ -121,8 +200,20 @@ Output ONLY the commit message (no explanations, no quotes, no preamble):"""
             message = response.content[0].text.strip()
             return self._clean_message(message)
 
+        except ImportError:
+            print("Warning: Anthropic library not installed")
+            print("Install it with: pip install anthropic")
+            return self._generate_fallback(diff, files)
         except Exception as e:
-            print(f"Warning: Anthropic generation failed: {e}")
+            error_msg = str(e)
+            if "api_key" in error_msg.lower() or "authentication" in error_msg.lower():
+                print("Warning: Anthropic authentication failed - check your API key")
+            elif "rate_limit" in error_msg.lower():
+                print("Warning: Anthropic rate limit exceeded - try again later")
+            elif "credit" in error_msg.lower() or "quota" in error_msg.lower():
+                print("Warning: Anthropic credit/quota exceeded - check your account")
+            else:
+                print(f"Warning: Anthropic generation failed: {e}")
             return self._generate_fallback(diff, files)
 
     def _generate_fallback(self, diff: str, files: list[str]) -> str:
